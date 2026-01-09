@@ -113,6 +113,10 @@ async function resetDatabase(
   }
 }
 
+// Global variable to track if database reset is needed
+// Set to true to force database reset during setup
+let needsReset = true;
+
 // Nature's Elixir seed script
 // This script sets up the store with Ireland region, Dublin stock location,
 // and Nature's Elixir products (Tea, Spartan Oils, Natural Sponges)
@@ -130,7 +134,6 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
 
   // Check if seed has already run by checking if "Europe" region exists
   logger.info("Checking if seed has already run...");
-  let needsReset = false;
   try {
     const existingRegions = await query.graph({
       entity: "region",
@@ -156,13 +159,18 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
     if (allRegions?.data && allRegions.data.length > 0) {
       needsReset = true;
       logger.info("Default data detected. Resetting database before seeding...");
+    } else {
+      // No existing data, but still reset to ensure clean state
+      needsReset = true;
+      logger.info("No existing data found. Resetting database to ensure clean state...");
     }
   } catch (error) {
-    // If query fails, continue with seeding (might be first run)
-    logger.info("Could not check existing data, proceeding with seed...");
+    // If query fails, continue with reset and seeding (might be first run)
+    logger.info("Could not check existing data, proceeding with reset and seed...");
+    needsReset = true;
   }
 
-  // Reset database if default data exists
+  // Always reset database during setup to ensure clean state
   if (needsReset) {
     logger.info("Resetting database: Removing default regions, products, and related data...");
     await resetDatabase(container, logger, query);
@@ -211,6 +219,7 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
     input: {
       selector: { id: store.id },
       update: {
+        name: "Natures Elixir",
         default_sales_channel_id: defaultSalesChannel[0].id,
       },
     },
