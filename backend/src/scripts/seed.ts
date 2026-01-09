@@ -58,52 +58,69 @@ async function resetDatabase(
   query: any
 ) {
   try {
-    // Get database manager for direct SQL operations
-    const manager = container.resolve(ContainerRegistrationKeys.MANAGER);
+    logger.info("Resetting database: Removing default regions, products, and related data...");
     
-    logger.info("Resetting database: Truncating default data tables...");
+    // Use query service to find existing regions and delete them
+    const existingRegions = await query.graph({
+      entity: "region",
+      fields: ["id"],
+    });
     
-    // Delete in correct order to respect foreign key constraints
-    // 1. Delete inventory levels first (references products and stock locations)
-    await manager.query("DELETE FROM inventory_level");
-    logger.info("Deleted inventory levels");
+    if (existingRegions?.data && existingRegions.data.length > 0) {
+      const regionModuleService = container.resolve(Modules.REGION);
+      
+      // Delete all existing regions (this will cascade delete related data)
+      const regionIds = existingRegions.data.map((r: any) => r.id);
+      try {
+        await regionModuleService.delete(regionIds);
+        logger.info(`Deleted ${regionIds.length} existing region(s)`);
+      } catch (error: any) {
+        logger.warn(`Failed to delete regions: ${error.message}`);
+        // Try deleting one by one as fallback
+        for (const regionId of regionIds) {
+          try {
+            await regionModuleService.delete([regionId]);
+            logger.info(`Deleted region: ${regionId}`);
+          } catch (err: any) {
+            logger.warn(`Failed to delete region ${regionId}: ${err.message}`);
+          }
+        }
+      }
+    }
     
-    // 2. Delete products (references categories, shipping profiles)
-    await manager.query("DELETE FROM product_variant");
-    await manager.query("DELETE FROM product");
-    logger.info("Deleted products and variants");
+    // Find and delete existing products
+    const existingProducts = await query.graph({
+      entity: "product",
+      fields: ["id"],
+    });
     
-    // 3. Delete product categories
-    await manager.query("DELETE FROM product_category");
-    logger.info("Deleted product categories");
+    if (existingProducts?.data && existingProducts.data.length > 0) {
+      const productModuleService = container.resolve(Modules.PRODUCT);
+      const productIds = existingProducts.data.map((p: any) => p.id);
+      try {
+        await productModuleService.delete(productIds);
+        logger.info(`Deleted ${productIds.length} existing product(s)`);
+      } catch (error: any) {
+        logger.warn(`Failed to delete products: ${error.message}`);
+      }
+    }
     
-    // 4. Delete shipping options (references fulfillment sets, shipping profiles)
-    await manager.query("DELETE FROM shipping_option");
-    logger.info("Deleted shipping options");
+    // Find and delete existing stock locations
+    const existingStockLocations = await query.graph({
+      entity: "stock_location",
+      fields: ["id"],
+    });
     
-    // 5. Delete fulfillment sets and service zones
-    await manager.query("DELETE FROM geo_zone");
-    await manager.query("DELETE FROM service_zone");
-    await manager.query("DELETE FROM fulfillment_set");
-    logger.info("Deleted fulfillment sets and service zones");
-    
-    // 6. Delete shipping profiles
-    await manager.query("DELETE FROM shipping_profile");
-    logger.info("Deleted shipping profiles");
-    
-    // 7. Delete regions (references countries, payment providers)
-    await manager.query("DELETE FROM region_country");
-    await manager.query("DELETE FROM region_payment_provider");
-    await manager.query("DELETE FROM region");
-    logger.info("Deleted regions");
-    
-    // 8. Delete stock locations
-    await manager.query("DELETE FROM stock_location");
-    logger.info("Deleted stock locations");
-    
-    // 9. Delete tax regions
-    await manager.query("DELETE FROM tax_region");
-    logger.info("Deleted tax regions");
+    if (existingStockLocations?.data && existingStockLocations.data.length > 0) {
+      const stockLocationModuleService = container.resolve(Modules.STOCK_LOCATION);
+      const locationIds = existingStockLocations.data.map((l: any) => l.id);
+      try {
+        await stockLocationModuleService.delete(locationIds);
+        logger.info(`Deleted ${locationIds.length} existing stock location(s)`);
+      } catch (error: any) {
+        logger.warn(`Failed to delete stock locations: ${error.message}`);
+      }
+    }
     
     logger.info("Database reset completed successfully.");
   } catch (error: any) {
