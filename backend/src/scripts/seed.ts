@@ -140,7 +140,7 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
       },
     });
 
-    if (existingRegions && existingRegions.length > 0) {
+    if (existingRegions?.data && existingRegions.data.length > 0) {
       logger.info(
         "Seed has already been run. 'Europe' region exists. Skipping seed script."
       );
@@ -153,7 +153,7 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
       fields: ["id", "name"],
     });
 
-    if (allRegions && allRegions.length > 0) {
+    if (allRegions?.data && allRegions.data.length > 0) {
       needsReset = true;
       logger.info("Default data detected. Resetting database before seeding...");
     }
