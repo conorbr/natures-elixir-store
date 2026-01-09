@@ -12,8 +12,18 @@ import {
   createShippingProfilesWorkflow,
   createStockLocationsWorkflow,
   createTaxRegionsWorkflow,
+  deleteApiKeysWorkflow,
+  deleteFulfillmentSetsWorkflow,
+  deleteProductCategoriesWorkflow,
+  deleteRegionsWorkflow,
+  deleteServiceZonesWorkflow,
+  deleteShippingOptionsWorkflow,
+  deleteShippingProfileWorkflow,
+  deleteStockLocationsWorkflow,
+  deleteTaxRegionsWorkflow,
   linkSalesChannelsToApiKeyWorkflow,
   linkSalesChannelsToStockLocationWorkflow,
+  updateRegionsWorkflow,
   updateStoresStep,
   updateStoresWorkflow,
 } from "@medusajs/medusa/core-flows";
@@ -52,34 +62,43 @@ const updateStoreCurrencies = createWorkflow(
 );
 
 // Reset database function to remove default data
+// Uses deleteRegionsWorkflow to properly delete existing regions
 async function resetDatabase(
   container: any,
   logger: any,
   query: any
 ) {
   try {
-    logger.info("Resetting database: Removing default regions, products, and related data...");
+    logger.info("Resetting database: Removing existing regions and data...");
     
-    // Use query service to find existing regions and delete them
+    // Find existing regions and delete them using the proper workflow
     const existingRegions = await query.graph({
       entity: "region",
-      fields: ["id"],
+      fields: ["id", "name"],
     });
     
     if (existingRegions?.data && existingRegions.data.length > 0) {
-      const regionModuleService = container.resolve(Modules.REGION);
-      
-      // Delete all existing regions (this will cascade delete related data)
       const regionIds = existingRegions.data.map((r: any) => r.id);
+      logger.info(`Found ${regionIds.length} existing region(s) to delete: ${existingRegions.data.map((r: any) => r.name).join(", ")}`);
+      
       try {
-        await regionModuleService.delete(regionIds);
-        logger.info(`Deleted ${regionIds.length} existing region(s)`);
+        // Use deleteRegionsWorkflow to properly delete regions
+        await deleteRegionsWorkflow(container).run({
+          input: {
+            ids: regionIds,
+          },
+        });
+        logger.info(`Successfully deleted ${regionIds.length} region(s)`);
       } catch (error: any) {
         logger.warn(`Failed to delete regions: ${error.message}`);
         // Try deleting one by one as fallback
         for (const regionId of regionIds) {
           try {
-            await regionModuleService.delete([regionId]);
+            await deleteRegionsWorkflow(container).run({
+              input: {
+                ids: [regionId],
+              },
+            });
             logger.info(`Deleted region: ${regionId}`);
           } catch (err: any) {
             logger.warn(`Failed to delete region ${regionId}: ${err.message}`);
@@ -87,42 +106,196 @@ async function resetDatabase(
         }
       }
     }
-    
-    // Find and delete existing products
-    const existingProducts = await query.graph({
-      entity: "product",
-      fields: ["id"],
+
+    // Delete existing tax regions
+    const existingTaxRegions = await query.graph({
+      entity: "tax_region",
+      fields: ["id", "country_code"],
     });
-    
-    if (existingProducts?.data && existingProducts.data.length > 0) {
-      const productModuleService = container.resolve(Modules.PRODUCT);
-      const productIds = existingProducts.data.map((p: any) => p.id);
+
+    if (existingTaxRegions?.data && existingTaxRegions.data.length > 0) {
+      const taxRegionIds = existingTaxRegions.data.map((tr: any) => tr.id);
+      logger.info(`Found ${taxRegionIds.length} existing tax region(s) to delete: ${existingTaxRegions.data.map((tr: any) => tr.country_code).join(", ")}`);
+      
       try {
-        await productModuleService.delete(productIds);
-        logger.info(`Deleted ${productIds.length} existing product(s)`);
+        // Use deleteTaxRegionsWorkflow to properly delete tax regions
+        await deleteTaxRegionsWorkflow(container).run({
+          input: {
+            ids: taxRegionIds,
+          },
+        });
+        logger.info(`Successfully deleted ${taxRegionIds.length} tax region(s)`);
       } catch (error: any) {
-        logger.warn(`Failed to delete products: ${error.message}`);
+        logger.warn(`Failed to delete tax regions: ${error.message}`);
+        // Try deleting one by one as fallback
+        for (const taxRegionId of taxRegionIds) {
+          try {
+            await deleteTaxRegionsWorkflow(container).run({
+              input: {
+                ids: [taxRegionId],
+              },
+            });
+            logger.info(`Deleted tax region: ${taxRegionId}`);
+          } catch (err: any) {
+            logger.warn(`Failed to delete tax region ${taxRegionId}: ${err.message}`);
+          }
+        }
       }
     }
-    
-    // Find and delete existing stock locations
+
+    // Delete shipping options (must be deleted before service zones)
+    const existingShippingOptions = await query.graph({
+      entity: "shipping_option",
+      fields: ["id", "name"],
+    });
+
+    if (existingShippingOptions?.data && existingShippingOptions.data.length > 0) {
+      const shippingOptionIds = existingShippingOptions.data.map((so: any) => so.id);
+      logger.info(`Found ${shippingOptionIds.length} existing shipping option(s) to delete`);
+      
+      try {
+        await deleteShippingOptionsWorkflow(container).run({
+          input: {
+            ids: shippingOptionIds,
+          },
+        });
+        logger.info(`Successfully deleted ${shippingOptionIds.length} shipping option(s)`);
+      } catch (error: any) {
+        logger.warn(`Failed to delete shipping options: ${error.message}`);
+      }
+    }
+
+    // Delete service zones (must be deleted before fulfillment sets)
+    const existingServiceZones = await query.graph({
+      entity: "service_zone",
+      fields: ["id", "name"],
+    });
+
+    if (existingServiceZones?.data && existingServiceZones.data.length > 0) {
+      const serviceZoneIds = existingServiceZones.data.map((sz: any) => sz.id);
+      logger.info(`Found ${serviceZoneIds.length} existing service zone(s) to delete`);
+      
+      try {
+        await deleteServiceZonesWorkflow(container).run({
+          input: {
+            ids: serviceZoneIds,
+          },
+        });
+        logger.info(`Successfully deleted ${serviceZoneIds.length} service zone(s)`);
+      } catch (error: any) {
+        logger.warn(`Failed to delete service zones: ${error.message}`);
+      }
+    }
+
+    // Delete fulfillment sets
+    const existingFulfillmentSets = await query.graph({
+      entity: "fulfillment_set",
+      fields: ["id", "name"],
+    });
+
+    if (existingFulfillmentSets?.data && existingFulfillmentSets.data.length > 0) {
+      const fulfillmentSetIds = existingFulfillmentSets.data.map((fs: any) => fs.id);
+      logger.info(`Found ${fulfillmentSetIds.length} existing fulfillment set(s) to delete`);
+      
+      try {
+        await deleteFulfillmentSetsWorkflow(container).run({
+          input: {
+            ids: fulfillmentSetIds,
+          },
+        });
+        logger.info(`Successfully deleted ${fulfillmentSetIds.length} fulfillment set(s)`);
+      } catch (error: any) {
+        logger.warn(`Failed to delete fulfillment sets: ${error.message}`);
+      }
+    }
+
+    // Delete shipping profiles
+    const existingShippingProfiles = await query.graph({
+      entity: "shipping_profile",
+      fields: ["id", "name"],
+    });
+
+    if (existingShippingProfiles?.data && existingShippingProfiles.data.length > 0) {
+      const shippingProfileIds = existingShippingProfiles.data.map((sp: any) => sp.id);
+      logger.info(`Found ${shippingProfileIds.length} existing shipping profile(s) to delete`);
+      
+      try {
+        await deleteShippingProfileWorkflow(container).run({
+          input: {
+            ids: shippingProfileIds,
+          },
+        });
+        logger.info(`Successfully deleted ${shippingProfileIds.length} shipping profile(s)`);
+      } catch (error: any) {
+        logger.warn(`Failed to delete shipping profiles: ${error.message}`);
+      }
+    }
+
+    // Delete stock locations
     const existingStockLocations = await query.graph({
       entity: "stock_location",
-      fields: ["id"],
+      fields: ["id", "name"],
     });
-    
+
     if (existingStockLocations?.data && existingStockLocations.data.length > 0) {
-      const stockLocationModuleService = container.resolve(Modules.STOCK_LOCATION);
-      const locationIds = existingStockLocations.data.map((l: any) => l.id);
+      const stockLocationIds = existingStockLocations.data.map((sl: any) => sl.id);
+      logger.info(`Found ${stockLocationIds.length} existing stock location(s) to delete`);
+      
       try {
-        await stockLocationModuleService.delete(locationIds);
-        logger.info(`Deleted ${locationIds.length} existing stock location(s)`);
+        await deleteStockLocationsWorkflow(container).run({
+          input: {
+            ids: stockLocationIds,
+          },
+        });
+        logger.info(`Successfully deleted ${stockLocationIds.length} stock location(s)`);
       } catch (error: any) {
         logger.warn(`Failed to delete stock locations: ${error.message}`);
       }
     }
+
+    // Delete product categories
+    const existingProductCategories = await query.graph({
+      entity: "product_category",
+      fields: ["id", "name"],
+    });
+
+    if (existingProductCategories?.data && existingProductCategories.data.length > 0) {
+      const productCategoryIds = existingProductCategories.data.map((pc: any) => pc.id);
+      logger.info(`Found ${productCategoryIds.length} existing product categor(ies) to delete`);
+      
+      try {
+        await deleteProductCategoriesWorkflow(container).run({
+          input: productCategoryIds,
+        });
+        logger.info(`Successfully deleted ${productCategoryIds.length} product categor(ies)`);
+      } catch (error: any) {
+        logger.warn(`Failed to delete product categories: ${error.message}`);
+      }
+    }
+
+    // Delete API keys
+    const existingApiKeys = await query.graph({
+      entity: "api_key",
+      fields: ["id", "title"],
+    });
+
+    if (existingApiKeys?.data && existingApiKeys.data.length > 0) {
+      const apiKeyIds = existingApiKeys.data.map((ak: any) => ak.id);
+      logger.info(`Found ${apiKeyIds.length} existing API key(s) to delete`);
+      
+      try {
+        await deleteApiKeysWorkflow(container).run({
+          input: {
+            ids: apiKeyIds,
+          },
+        });
+        logger.info(`Successfully deleted ${apiKeyIds.length} API key(s)`);
+      } catch (error: any) {
+        logger.warn(`Failed to delete API keys: ${error.message}`);
+      }
+    }
     
-    logger.info("Database reset completed successfully.");
+    logger.info("Database reset completed - all entities deleted, ready for re-seeding.");
   } catch (error: any) {
     logger.error(`Error during database reset: ${error.message}`);
     // Don't throw - allow script to continue even if reset fails
@@ -244,6 +417,7 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
   });
   logger.info("Seeding region data...");
   // Nature's Elixir: Europe region (EUR) and UK region (GBP) with Stripe payment
+  // Regions should have been deleted by resetDatabase, so we create new ones
   const { result: regionResult } = await createRegionsWorkflow(container).run({
     input: {
       regions: [
@@ -358,7 +532,7 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
             type: "country",
           },
         ],
-      },
+          },
       {
         name: "Europe",
         geo_zones: [
@@ -422,11 +596,11 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
         prices: [
           {
             currency_code: "eur",
-            amount: 500, // €5.00
+            amount: 5, // €5.00 (major units in MedusaJS 2.0)
           },
           {
             region_id: europeRegion.id,
-            amount: 500,
+            amount: 5,
           },
         ],
         rules: [
@@ -456,11 +630,11 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
         prices: [
           {
             currency_code: "eur",
-            amount: 1000, // €10.00
+            amount: 10, // €10.00 (major units in MedusaJS 2.0)
           },
           {
             region_id: europeRegion.id,
-            amount: 1000,
+            amount: 10,
           },
         ],
         rules: [
@@ -490,11 +664,25 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
         prices: [
           {
             currency_code: "eur",
-            amount: 0, // €0.00
+            amount: 0, // €0.00 - free shipping when condition is met
+            rules: [
+              {
+                attribute: "item_total",
+                operator: "gte",
+                value: 45, // €45.00 (major units in MedusaJS 2.0)
+              },
+            ],
           },
           {
             region_id: europeRegion.id,
             amount: 0,
+            rules: [
+              {
+                attribute: "item_total",
+                operator: "gte",
+                value: 45, // €45.00 (major units in MedusaJS 2.0)
+              },
+            ],
           },
         ],
         rules: [
@@ -507,14 +695,9 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
             attribute: "is_return",
             value: "false",
             operator: "eq",
-          },
-          {
-            attribute: "subtotal",
-            value: "4500", // €45.00 in cents
-            operator: "gte",
-          },
-        ],
-      },
+                },
+              ],
+            },
       // UK shipping options (GBP)
       {
         name: "Standard Shipping (UK)",
@@ -526,15 +709,15 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
           label: "Standard",
           description: "Standard shipping to United Kingdom. Delivery in 5-7 business days.",
           code: "standard",
-        },
-        prices: [
-          {
+              },
+              prices: [
+                {
             currency_code: "gbp",
-            amount: 500, // £5.00
+            amount: 5, // £5.00 (major units in MedusaJS 2.0)
           },
           {
             region_id: ukRegion.id,
-            amount: 500,
+            amount: 5,
           },
         ],
         rules: [
@@ -547,10 +730,10 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
             attribute: "is_return",
             value: "false",
             operator: "eq",
-          },
-        ],
-      },
-      {
+                },
+              ],
+            },
+            {
         name: "Express Shipping (UK)",
         price_type: "flat",
         provider_id: "manual_manual",
@@ -560,15 +743,15 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
           label: "Express",
           description: "Express shipping to United Kingdom. Delivery in 2-3 business days.",
           code: "express",
-        },
-        prices: [
-          {
+              },
+              prices: [
+                {
             currency_code: "gbp",
-            amount: 1000, // £10.00
+            amount: 10, // £10.00 (major units in MedusaJS 2.0)
           },
           {
             region_id: ukRegion.id,
-            amount: 1000,
+            amount: 10,
           },
         ],
         rules: [
@@ -581,10 +764,10 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
             attribute: "is_return",
             value: "false",
             operator: "eq",
-          },
-        ],
-      },
-      {
+                },
+              ],
+            },
+            {
         name: "Free Shipping (UK)",
         price_type: "flat",
         provider_id: "manual_manual",
@@ -594,15 +777,29 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
           label: "Free",
           description: "Free shipping for orders over £45.00",
           code: "free",
-        },
-        prices: [
-          {
+              },
+              prices: [
+                {
             currency_code: "gbp",
-            amount: 0, // £0.00
-          },
+            amount: 0, // £0.00 - free shipping when condition is met
+            rules: [
+              {
+                attribute: "item_total",
+                operator: "gte",
+                value: 45, // £45.00 (major units in MedusaJS 2.0)
+                },
+              ],
+            },
           {
             region_id: ukRegion.id,
             amount: 0,
+            rules: [
+              {
+                attribute: "item_total",
+                operator: "gte",
+                value: 45, // £45.00 (major units in MedusaJS 2.0)
+              },
+            ],
           },
         ],
         rules: [
@@ -615,14 +812,9 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
             attribute: "is_return",
             value: "false",
             operator: "eq",
-          },
-          {
-            attribute: "subtotal",
-            value: "4500", // £45.00 in pence
-            operator: "gte",
-          },
-        ],
-      },
+                },
+              ],
+            },
       // Europe shipping options (EUR)
       {
         name: "Standard Shipping (Europe)",
@@ -634,15 +826,15 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
           label: "Standard",
           description: "Standard shipping to Europe. Delivery in 7-10 business days.",
           code: "standard",
-        },
-        prices: [
-          {
-            currency_code: "eur",
-            amount: 500, // €5.00
+              },
+              prices: [
+                {
+                  currency_code: "eur",
+            amount: 5, // €5.00 (major units in MedusaJS 2.0)
           },
           {
             region_id: europeRegion.id,
-            amount: 500,
+            amount: 5,
           },
         ],
         rules: [
@@ -655,10 +847,10 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
             attribute: "is_return",
             value: "false",
             operator: "eq",
-          },
-        ],
-      },
-      {
+                },
+              ],
+            },
+            {
         name: "Express Shipping (Europe)",
         price_type: "flat",
         provider_id: "manual_manual",
@@ -668,15 +860,15 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
           label: "Express",
           description: "Express shipping to Europe. Delivery in 3-5 business days.",
           code: "express",
-        },
-        prices: [
-          {
-            currency_code: "eur",
-            amount: 1000, // €10.00
+              },
+              prices: [
+                {
+                  currency_code: "eur",
+            amount: 10, // €10.00 (major units in MedusaJS 2.0)
           },
           {
             region_id: europeRegion.id,
-            amount: 1000,
+                  amount: 10,
           },
         ],
         rules: [
@@ -689,10 +881,10 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
             attribute: "is_return",
             value: "false",
             operator: "eq",
-          },
-        ],
-      },
-      {
+                },
+              ],
+            },
+            {
         name: "Free Shipping",
         price_type: "flat",
         provider_id: "manual_manual",
@@ -702,17 +894,31 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
           label: "Free",
           description: "Free shipping for orders over €45.00",
           code: "free",
-        },
-        prices: [
-          {
-            currency_code: "eur",
-            amount: 0, // €0.00
-          },
-          {
+              },
+              prices: [
+                {
+                  currency_code: "eur",
+            amount: 0, // €0.00 - free shipping when condition is met
+            rules: [
+                {
+                attribute: "item_total",
+                operator: "gte",
+                value: 45, // €45.00 (major units in MedusaJS 2.0)
+                },
+              ],
+            },
+            {
             region_id: europeRegion.id,
             amount: 0,
-          },
-        ],
+            rules: [
+              {
+                attribute: "item_total",
+                operator: "gte",
+                value: 45, // €45.00 (major units in MedusaJS 2.0)
+                },
+              ],
+            },
+          ],
         rules: [
           {
             attribute: "enabled_in_store",
@@ -723,11 +929,6 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
             attribute: "is_return",
             value: "false",
             operator: "eq",
-          },
-          {
-            attribute: "subtotal",
-            value: "4500", // €45.00 in cents
-            operator: "gte",
           },
         ],
       },
@@ -753,9 +954,9 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
           title: "Webshop",
           type: "publishable",
           created_by: "",
-        },
-      ],
-    },
+                },
+              ],
+            },
   });
   const publishableApiKey = publishableApiKeyResult[0];
 
