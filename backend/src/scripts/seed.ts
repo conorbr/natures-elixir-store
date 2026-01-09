@@ -1,14 +1,11 @@
-import { CreateInventoryLevelInput, ExecArgs } from "@medusajs/framework/types";
+import { ExecArgs } from "@medusajs/framework/types";
 import {
   ContainerRegistrationKeys,
   Modules,
-  ProductStatus,
 } from "@medusajs/framework/utils";
 import {
   createApiKeysWorkflow,
-  createInventoryLevelsWorkflow,
   createProductCategoriesWorkflow,
-  createProductsWorkflow,
   createRegionsWorkflow,
   createSalesChannelsWorkflow,
   createShippingOptionsWorkflow,
@@ -54,6 +51,68 @@ const updateStoreCurrencies = createWorkflow(
   }
 );
 
+// Reset database function to remove default data
+async function resetDatabase(
+  container: any,
+  logger: any,
+  query: any
+) {
+  try {
+    // Get database manager for direct SQL operations
+    const manager = container.resolve(ContainerRegistrationKeys.MANAGER);
+    
+    logger.info("Resetting database: Truncating default data tables...");
+    
+    // Delete in correct order to respect foreign key constraints
+    // 1. Delete inventory levels first (references products and stock locations)
+    await manager.query("DELETE FROM inventory_level");
+    logger.info("Deleted inventory levels");
+    
+    // 2. Delete products (references categories, shipping profiles)
+    await manager.query("DELETE FROM product_variant");
+    await manager.query("DELETE FROM product");
+    logger.info("Deleted products and variants");
+    
+    // 3. Delete product categories
+    await manager.query("DELETE FROM product_category");
+    logger.info("Deleted product categories");
+    
+    // 4. Delete shipping options (references fulfillment sets, shipping profiles)
+    await manager.query("DELETE FROM shipping_option");
+    logger.info("Deleted shipping options");
+    
+    // 5. Delete fulfillment sets and service zones
+    await manager.query("DELETE FROM geo_zone");
+    await manager.query("DELETE FROM service_zone");
+    await manager.query("DELETE FROM fulfillment_set");
+    logger.info("Deleted fulfillment sets and service zones");
+    
+    // 6. Delete shipping profiles
+    await manager.query("DELETE FROM shipping_profile");
+    logger.info("Deleted shipping profiles");
+    
+    // 7. Delete regions (references countries, payment providers)
+    await manager.query("DELETE FROM region_country");
+    await manager.query("DELETE FROM region_payment_provider");
+    await manager.query("DELETE FROM region");
+    logger.info("Deleted regions");
+    
+    // 8. Delete stock locations
+    await manager.query("DELETE FROM stock_location");
+    logger.info("Deleted stock locations");
+    
+    // 9. Delete tax regions
+    await manager.query("DELETE FROM tax_region");
+    logger.info("Deleted tax regions");
+    
+    logger.info("Database reset completed successfully.");
+  } catch (error: any) {
+    logger.error(`Error during database reset: ${error.message}`);
+    // Don't throw - allow script to continue even if reset fails
+    logger.warn("Continuing with seed despite reset errors...");
+  }
+}
+
 // Nature's Elixir seed script
 // This script sets up the store with Ireland region, Dublin stock location,
 // and Nature's Elixir products (Tea, Spartan Oils, Natural Sponges)
@@ -68,6 +127,47 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
   // Nature's Elixir: Europe and UK store
   const europeCountries = ["ie", "de", "dk", "se", "fr", "es", "it"]; // Europe (EUR)
   const ukCountries = ["gb"]; // United Kingdom (GBP)
+
+  // Check if seed has already run by checking if "Europe" region exists
+  logger.info("Checking if seed has already run...");
+  let needsReset = false;
+  try {
+    const existingRegions = await query.graph({
+      entity: "region",
+      fields: ["id", "name"],
+      filters: {
+        name: "Europe",
+      },
+    });
+
+    if (existingRegions && existingRegions.length > 0) {
+      logger.info(
+        "Seed has already been run. 'Europe' region exists. Skipping seed script."
+      );
+      return;
+    }
+
+    // Check if default data exists (from initial deployment)
+    const allRegions = await query.graph({
+      entity: "region",
+      fields: ["id", "name"],
+    });
+
+    if (allRegions && allRegions.length > 0) {
+      needsReset = true;
+      logger.info("Default data detected. Resetting database before seeding...");
+    }
+  } catch (error) {
+    // If query fails, continue with seeding (might be first run)
+    logger.info("Could not check existing data, proceeding with seed...");
+  }
+
+  // Reset database if default data exists
+  if (needsReset) {
+    logger.info("Resetting database: Removing default regions, products, and related data...");
+    await resetDatabase(container, logger, query);
+    logger.info("Database reset complete.");
+  }
 
   logger.info("Seeding Nature's Elixir store data...");
   const [store] = await storeModuleService.listStores();
@@ -349,6 +449,45 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
           },
         ],
       },
+      {
+        name: "Free Shipping",
+        price_type: "flat",
+        provider_id: "manual_manual",
+        service_zone_id: irelandZone.id,
+        shipping_profile_id: shippingProfile.id,
+        type: {
+          label: "Free",
+          description: "Free shipping for orders over €45.00",
+          code: "free",
+        },
+        prices: [
+          {
+            currency_code: "eur",
+            amount: 0, // €0.00
+          },
+          {
+            region_id: europeRegion.id,
+            amount: 0,
+          },
+        ],
+        rules: [
+          {
+            attribute: "enabled_in_store",
+            value: "true",
+            operator: "eq",
+          },
+          {
+            attribute: "is_return",
+            value: "false",
+            operator: "eq",
+          },
+          {
+            attribute: "subtotal",
+            value: "4500", // €45.00 in cents
+            operator: "gte",
+          },
+        ],
+      },
       // UK shipping options (GBP)
       {
         name: "Standard Shipping (UK)",
@@ -364,11 +503,11 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
         prices: [
           {
             currency_code: "gbp",
-            amount: 800, // £8.00
+            amount: 500, // £5.00
           },
           {
             region_id: ukRegion.id,
-            amount: 800,
+            amount: 500,
           },
         ],
         rules: [
@@ -398,11 +537,11 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
         prices: [
           {
             currency_code: "gbp",
-            amount: 1500, // £15.00
+            amount: 1000, // £10.00
           },
           {
             region_id: ukRegion.id,
-            amount: 1500,
+            amount: 1000,
           },
         ],
         rules: [
@@ -415,6 +554,45 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
             attribute: "is_return",
             value: "false",
             operator: "eq",
+          },
+        ],
+      },
+      {
+        name: "Free Shipping (UK)",
+        price_type: "flat",
+        provider_id: "manual_manual",
+        service_zone_id: ukZone.id,
+        shipping_profile_id: shippingProfile.id,
+        type: {
+          label: "Free",
+          description: "Free shipping for orders over £45.00",
+          code: "free",
+        },
+        prices: [
+          {
+            currency_code: "gbp",
+            amount: 0, // £0.00
+          },
+          {
+            region_id: ukRegion.id,
+            amount: 0,
+          },
+        ],
+        rules: [
+          {
+            attribute: "enabled_in_store",
+            value: "true",
+            operator: "eq",
+          },
+          {
+            attribute: "is_return",
+            value: "false",
+            operator: "eq",
+          },
+          {
+            attribute: "subtotal",
+            value: "4500", // £45.00 in pence
+            operator: "gte",
           },
         ],
       },
@@ -433,11 +611,11 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
         prices: [
           {
             currency_code: "eur",
-            amount: 1200, // €12.00
+            amount: 500, // €5.00
           },
           {
             region_id: europeRegion.id,
-            amount: 1200,
+            amount: 500,
           },
         ],
         rules: [
@@ -467,11 +645,11 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
         prices: [
           {
             currency_code: "eur",
-            amount: 2000, // €20.00
+            amount: 1000, // €10.00
           },
           {
             region_id: europeRegion.id,
-            amount: 2000,
+            amount: 1000,
           },
         ],
         rules: [
@@ -484,6 +662,45 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
             attribute: "is_return",
             value: "false",
             operator: "eq",
+          },
+        ],
+      },
+      {
+        name: "Free Shipping",
+        price_type: "flat",
+        provider_id: "manual_manual",
+        service_zone_id: europeZone.id,
+        shipping_profile_id: shippingProfile.id,
+        type: {
+          label: "Free",
+          description: "Free shipping for orders over €45.00",
+          code: "free",
+        },
+        prices: [
+          {
+            currency_code: "eur",
+            amount: 0, // €0.00
+          },
+          {
+            region_id: europeRegion.id,
+            amount: 0,
+          },
+        ],
+        rules: [
+          {
+            attribute: "enabled_in_store",
+            value: "true",
+            operator: "eq",
+          },
+          {
+            attribute: "is_return",
+            value: "false",
+            operator: "eq",
+          },
+          {
+            attribute: "subtotal",
+            value: "4500", // €45.00 in cents
+            operator: "gte",
           },
         ],
       },
@@ -523,292 +740,59 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
   });
   logger.info("Finished seeding publishable API key data.");
 
-  logger.info("Seeding product data...");
+  logger.info("Seeding product categories...");
 
-  // Nature's Elixir: Product categories
-  const { result: categoryResult } = await createProductCategoriesWorkflow(
-    container
-  ).run({
+  // Nature's Elixir: Product categories (products will be imported via CSV)
+  await createProductCategoriesWorkflow(container).run({
     input: {
       product_categories: [
         {
           name: "Tea",
+          description: "Various types of natural and organic teas",
+          handle: "tea",
           is_active: true,
+          is_internal: false,
         },
         {
-          name: "Spartan Oils",
+          name: "Essential Oils",
+          description: "Natural essential oils and oil products",
+          handle: "essential-oils",
           is_active: true,
+          is_internal: false,
         },
         {
           name: "Natural Sponges",
+          description: "Organic and natural sponge products",
+          handle: "natural-sponges",
           is_active: true,
+          is_internal: false,
+        },
+        {
+          name: "Wellness Supplements",
+          description: "Natural wellness and health supplements",
+          handle: "wellness-supplements",
+          is_active: true,
+          is_internal: false,
+        },
+        {
+          name: "Soap Products",
+          description: "Natural soap products",
+          handle: "soap-products",
+          is_active: true,
+          is_internal: false,
+        },
+        {
+          name: "Accessories",
+          description: "Tea accessories and related products",
+          handle: "accessories",
+          is_active: true,
+          is_internal: false,
         },
       ],
     },
   });
+  logger.info("Finished seeding product categories.");
 
-  // Nature's Elixir: Products for Tea, Spartan Oils, and Natural Sponges
-  await createProductsWorkflow(container).run({
-    input: {
-      products: [
-        {
-          title: "Organic Green Tea",
-          category_ids: [
-            categoryResult.find((cat) => cat.name === "Tea")!.id,
-          ],
-          description:
-            "Premium organic green tea sourced from the finest tea gardens. Rich in antioxidants and naturally refreshing. Perfect for daily wellness and relaxation.",
-          handle: "organic-green-tea",
-          weight: 100, // grams
-          status: ProductStatus.PUBLISHED,
-          shipping_profile_id: shippingProfile.id,
-          images: [], // To be added with actual product images
-          options: [
-            {
-              title: "Size",
-              values: ["50g", "100g", "250g"],
-            },
-          ],
-          variants: [
-            {
-              title: "50g",
-              sku: "TEA-GREEN-50G",
-              options: {
-                Size: "50g",
-              },
-              prices: [
-                {
-                  amount: 800, // €8.00
-                  currency_code: "eur",
-                },
-                {
-                  amount: 700, // £7.00
-                  currency_code: "gbp",
-                },
-              ],
-            },
-            {
-              title: "100g",
-              sku: "TEA-GREEN-100G",
-              options: {
-                Size: "100g",
-              },
-              prices: [
-                {
-                  amount: 1400, // €14.00
-                  currency_code: "eur",
-                },
-                {
-                  amount: 1200, // £12.00
-                  currency_code: "gbp",
-                },
-              ],
-            },
-            {
-              title: "250g",
-              sku: "TEA-GREEN-250G",
-              options: {
-                Size: "250g",
-              },
-              prices: [
-                {
-                  amount: 3000, // €30.00
-                  currency_code: "eur",
-                },
-                {
-                  amount: 2600, // £26.00
-                  currency_code: "gbp",
-                },
-              ],
-            },
-          ],
-          sales_channels: [
-            {
-              id: defaultSalesChannel[0].id,
-            },
-          ],
-        },
-        {
-          title: "Lavender Essential Oil",
-          category_ids: [
-            categoryResult.find((cat) => cat.name === "Spartan Oils")!.id,
-          ],
-          description:
-            "Pure lavender essential oil, known for its calming and soothing properties. Perfect for aromatherapy, relaxation, and natural wellness. 100% pure and natural.",
-          handle: "lavender-essential-oil",
-          weight: 50, // grams
-          status: ProductStatus.PUBLISHED,
-          shipping_profile_id: shippingProfile.id,
-          images: [], // To be added with actual product images
-          options: [
-            {
-              title: "Volume",
-              values: ["10ml", "30ml", "50ml"],
-            },
-          ],
-          variants: [
-            {
-              title: "10ml",
-              sku: "OIL-LAVENDER-10ML",
-              options: {
-                Volume: "10ml",
-              },
-              prices: [
-                {
-                  amount: 1200, // €12.00
-                  currency_code: "eur",
-                },
-                {
-                  amount: 1000, // £10.00
-                  currency_code: "gbp",
-                },
-              ],
-            },
-            {
-              title: "30ml",
-              sku: "OIL-LAVENDER-30ML",
-              options: {
-                Volume: "30ml",
-              },
-              prices: [
-                {
-                  amount: 3000, // €30.00
-                  currency_code: "eur",
-                },
-                {
-                  amount: 2600, // £26.00
-                  currency_code: "gbp",
-                },
-              ],
-            },
-            {
-              title: "50ml",
-              sku: "OIL-LAVENDER-50ML",
-              options: {
-                Volume: "50ml",
-              },
-              prices: [
-                {
-                  amount: 4500, // €45.00
-                  currency_code: "eur",
-                },
-                {
-                  amount: 3900, // £39.00
-                  currency_code: "gbp",
-                },
-              ],
-            },
-          ],
-          sales_channels: [
-            {
-              id: defaultSalesChannel[0].id,
-            },
-          ],
-        },
-        {
-          title: "Natural Sea Sponge",
-          category_ids: [
-            categoryResult.find((cat) => cat.name === "Natural Sponges")!.id,
-          ],
-          description:
-            "Premium natural sea sponge, sustainably harvested. Soft, durable, and perfect for gentle exfoliation and natural skincare. Eco-friendly and biodegradable.",
-          handle: "natural-sea-sponge",
-          weight: 50, // grams
-          status: ProductStatus.PUBLISHED,
-          shipping_profile_id: shippingProfile.id,
-          images: [], // To be added with actual product images
-          options: [
-            {
-              title: "Size",
-              values: ["Small", "Medium", "Large"],
-            },
-          ],
-          variants: [
-            {
-              title: "Small",
-              sku: "SPONGE-SEA-SMALL",
-              options: {
-                Size: "Small",
-              },
-              prices: [
-                {
-                  amount: 1500, // €15.00
-                  currency_code: "eur",
-                },
-                {
-                  amount: 1300, // £13.00
-                  currency_code: "gbp",
-                },
-              ],
-            },
-            {
-              title: "Medium",
-              sku: "SPONGE-SEA-MEDIUM",
-              options: {
-                Size: "Medium",
-              },
-              prices: [
-                {
-                  amount: 2500, // €25.00
-                  currency_code: "eur",
-                },
-                {
-                  amount: 2200, // £22.00
-                  currency_code: "gbp",
-                },
-              ],
-            },
-            {
-              title: "Large",
-              sku: "SPONGE-SEA-LARGE",
-              options: {
-                Size: "Large",
-              },
-              prices: [
-                {
-                  amount: 3500, // €35.00
-                  currency_code: "eur",
-                },
-                {
-                  amount: 3000, // £30.00
-                  currency_code: "gbp",
-                },
-              ],
-            },
-          ],
-          sales_channels: [
-            {
-              id: defaultSalesChannel[0].id,
-            },
-          ],
-        },
-      ],
-    },
-  });
-  logger.info("Finished seeding product data.");
-
-  logger.info("Seeding inventory levels.");
-
-  const { data: inventoryItems } = await query.graph({
-    entity: "inventory_item",
-    fields: ["id"],
-  });
-
-  const inventoryLevels: CreateInventoryLevelInput[] = [];
-  for (const inventoryItem of inventoryItems) {
-    const inventoryLevel = {
-      location_id: stockLocation.id,
-      stocked_quantity: 1000000,
-      inventory_item_id: inventoryItem.id,
-    };
-    inventoryLevels.push(inventoryLevel);
-  }
-
-  await createInventoryLevelsWorkflow(container).run({
-    input: {
-      inventory_levels: inventoryLevels,
-    },
-  });
-
-  logger.info("Finished seeding inventory levels data.");
+  logger.info("Seed script completed successfully!");
+  logger.info("Note: Products will be imported separately via CSV.");
 }

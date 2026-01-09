@@ -7,6 +7,7 @@ Apple Pay and Google Pay have been added to the checkout flow using Stripe's Pay
 ## How It Works
 
 The Payment Request Button automatically detects:
+
 - **Apple Pay** on Safari (macOS, iOS, iPadOS)
 - **Google Pay** on Chrome and other supported browsers
 - Other payment methods supported by the browser
@@ -30,6 +31,7 @@ No additional Stripe configuration is needed. The Payment Request Button uses yo
 ### 3. Domain Verification (Optional)
 
 For production, you may want to verify your domain with:
+
 - **Apple Pay**: Domain verification in Apple Developer account (optional for most use cases)
 - **Google Pay**: No domain verification needed
 
@@ -70,6 +72,7 @@ For production, you may want to verify your domain with:
 ### Testing Apple Pay
 
 1. **On macOS/iOS Safari**:
+
    - Open your store in Safari
    - Add items to cart
    - Go to checkout
@@ -84,6 +87,7 @@ For production, you may want to verify your domain with:
 ### Testing Google Pay
 
 1. **On Chrome/Edge**:
+
    - Open your store in Chrome
    - Add items to cart
    - Go to checkout
@@ -98,6 +102,7 @@ For production, you may want to verify your domain with:
 ### Testing Without Payment Methods
 
 If you don't have Apple Pay or Google Pay set up:
+
 - The button will not appear (this is expected)
 - Only the card input form will be shown
 - This is normal behavior
@@ -126,6 +131,7 @@ The button appears above the card input. To change the position, edit `payment/i
 ### Button Not Appearing
 
 **Possible causes:**
+
 1. **Not HTTPS**: Check that your site is served over HTTPS (Railway should handle this)
 2. **Browser not supported**: Try Safari for Apple Pay, Chrome for Google Pay
 3. **No payment method saved**: Customer needs to have a card saved in their wallet/browser
@@ -143,7 +149,7 @@ The button appears above the card input. To change the position, edit `payment/i
 ✅ **Higher conversion** - Reduces checkout friction  
 ✅ **Better UX** - Native payment experience  
 ✅ **Secure** - Uses device authentication  
-✅ **Mobile-friendly** - Great for mobile customers  
+✅ **Mobile-friendly** - Great for mobile customers
 
 ## Notes
 
@@ -151,4 +157,3 @@ The button appears above the card input. To change the position, edit `payment/i
 - No additional fees - uses your existing Stripe account
 - Works with all currencies you've configured (EUR, GBP)
 - Automatically uses the correct currency based on the cart
-

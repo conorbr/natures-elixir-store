@@ -16,7 +16,8 @@ This directory contains all client-specific documentation, configurations, and b
 All setup and configuration documentation is in the **[setup/](./setup/)** folder:
 
 - **[Setup Documentation](./setup/README.md)** - Overview of all setup docs
-- **[Store Configuration Plan](./setup/store-configuration-plan.md)** - Complete requirements guide for store configuration ⭐ **REQUIREMENTS**
+- **[Seed Script Requirements](./setup/seed-script-requirements.md)** - Requirements for building the seed script ⭐ **SEED SCRIPT GUIDE**
+- **[Store Configuration Plan](./setup/store-configuration-plan.md)** - Complete requirements guide (reference)
 - **[Product JSON Files](./setup/products/)** - Product data for CSV import ⭐ **PRODUCT DATA**
 - **[Region Configuration Guide](./setup/region-configuration-guide.md)** - Region and currency setup
 - **[Medusa Configuration](./setup/medusa-configuration.md)** - MedusaJS 2.0 specific configurations
@@ -37,10 +38,10 @@ All setup and configuration documentation is in the **[setup/](./setup/)** folde
 
 ## Setup Approach
 
-We're using a **CSV import + Admin Dashboard** approach:
+We're using a **Seed Script + CSV Import** approach:
 
-1. **Products**: Import via CSV generated from JSON product files
-2. **Store Settings**: Configure regions, shipping, and other settings via admin dashboard
+1. **Store Configuration**: Seed script configures regions, shipping, stock locations, categories, etc.
+2. **Products**: Import via CSV generated from JSON product files
 
 ## Notes
 

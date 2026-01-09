@@ -4,55 +4,64 @@ This folder contains all documentation related to the initial setup and configur
 
 ## Setup Approach
 
-We're using a **CSV import + Admin Dashboard** approach:
+We're using a **Seed Script + CSV Import** approach:
 
-1. **Product Import**: Use JSON product files to generate CSV for bulk product import
-2. **Store Configuration**: Configure regions, shipping, and other settings via admin dashboard
+1. **Store Configuration**: Seed script configures regions, shipping, stock locations, categories, etc.
+2. **Product Import**: Use JSON product files to generate CSV for bulk product import
 
 ## Setup Documentation
 
 ### Getting Started
 
-1. **[Store Configuration Plan](./store-configuration-plan.md)** ⭐ **REQUIREMENTS GUIDE**
+1. **[Seed Script Requirements](./seed-script-requirements.md)** ⭐ **SEED SCRIPT GUIDE**
 
-   - Complete requirements for store configuration
-   - Use this as a checklist when configuring via admin dashboard
+   - Complete requirements for seed script implementation
+   - All store configuration values and settings
+   - What to include and what to exclude (products via CSV)
+   - Use this to build the seed script
+
+2. **[Store Configuration Plan](./store-configuration-plan.md)** ⭐ **REFERENCE GUIDE**
+
+   - Complete requirements for store configuration (reference)
    - All configuration values and settings
+   - Useful for understanding the full setup
 
-2. **[Product JSON Files](./products/)** ⭐ **PRODUCT DATA**
+3. **[Product JSON Files](./products/)** ⭐ **PRODUCT DATA**
 
    - `tea-products.json` - All 32 tea products with variants
    - `essential-oils.json` - All 12 essential oil products
    - `other-products.json` - Supplements, sponges, soaps, accessories
    - Use these to generate CSV for product import
 
-3. **[Region Configuration Guide](./region-configuration-guide.md)**
+4. **[Region Configuration Guide](./region-configuration-guide.md)**
 
    - Explains why UK is a separate region from Europe
    - Region structure and currency setup
 
-4. **[Admin Dashboard Shipping Guide](./admin-dashboard-shipping-guide.md)** ⭐ **SHIPPING SETUP**
+5. **[Admin Dashboard Shipping Guide](./admin-dashboard-shipping-guide.md)** ⭐ **SHIPPING SETUP**
 
    - Step-by-step guide for configuring shipping in admin dashboard
    - How to create shipping options and set pricing
    - Troubleshooting tips
 
-5. **[Medusa Configuration](./medusa-configuration.md)**
+6. **[Medusa Configuration](./medusa-configuration.md)**
    - MedusaJS 2.0 specific configurations
    - Environment variables
    - Module configurations
 
 ## Setup Workflow
 
-1. **Review** [Store Configuration Plan](./store-configuration-plan.md) for all requirements
-2. **Generate CSV** from product JSON files for bulk import
-3. **Configure Store Settings** via admin dashboard:
+1. **Review** [Seed Script Requirements](./seed-script-requirements.md) for all requirements
+2. **Run Seed Script** to configure:
+   - Store settings (currencies, sales channels)
    - Regions (Europe with EUR, UK with GBP)
    - Stock locations (Dublin)
-   - Shipping options and rates
+   - Shipping profiles, zones, and options
    - Payment providers (Stripe)
+   - Product categories
+3. **Generate CSV** from product JSON files for bulk import
 4. **Import Products** via CSV import in admin dashboard
-5. **Verify** all configurations match the requirements plan
+5. **Verify** all configurations match the requirements
 
 ## Product Import Process
 
@@ -72,17 +81,18 @@ The product JSON files in `./products/` contain all product data. Convert these 
 3. Upload the generated CSV file
 4. Verify products are imported correctly
 
-## Store Configuration via Admin Dashboard
+## Store Configuration via Seed Script
 
-Use the admin dashboard to configure:
+The seed script (`backend/src/scripts/seed.ts`) will automatically configure:
 
-- **Regions**: Create Europe (EUR) and UK (GBP) regions
-- **Shipping**: Set up shipping options and rates
-- **Stock Locations**: Configure Dublin fulfillment center
-- **Payment**: Ensure Stripe is configured
-- **Categories**: Create product categories (Tea, Spartan Oils, Natural Sponges, etc.)
+- **Store Settings**: Currencies (EUR, GBP), sales channels
+- **Regions**: Europe (EUR) and UK (GBP) with countries
+- **Shipping**: Profiles, zones, and options with pricing
+- **Stock Locations**: Dublin fulfillment center
+- **Payment**: Stripe integration in both regions
+- **Categories**: Product categories for CSV import reference
 
-Refer to [Store Configuration Plan](./store-configuration-plan.md) for detailed requirements.
+Refer to [Seed Script Requirements](./seed-script-requirements.md) for detailed requirements.
 
 ## Quick Reference
 
@@ -94,6 +104,7 @@ Refer to [Store Configuration Plan](./store-configuration-plan.md) for detailed 
 ## Notes
 
 - All setup documentation assumes the store is already deployed on Railway
+- Store configuration is done via seed script (`backend/src/scripts/seed.ts`)
 - Products are imported via CSV generated from JSON files
-- Store settings are configured manually via admin dashboard
 - Product images can be added after import via admin dashboard
+- Seed script should be idempotent (safe to run multiple times)
