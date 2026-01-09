@@ -54,7 +54,10 @@ const updateStoreCurrencies = createWorkflow(
   }
 );
 
-export default async function seedDemoData({ container }: ExecArgs) {
+// Nature's Elixir seed script
+// This script sets up the store with Ireland region, Dublin stock location,
+// and Nature's Elixir products (Tea, Spartan Oils, Natural Sponges)
+export default async function seedNaturesElixir({ container }: ExecArgs) {
   const logger = container.resolve(ContainerRegistrationKeys.LOGGER);
   const link = container.resolve(ContainerRegistrationKeys.LINK);
   const query = container.resolve(ContainerRegistrationKeys.QUERY);
@@ -62,9 +65,11 @@ export default async function seedDemoData({ container }: ExecArgs) {
   const salesChannelModuleService = container.resolve(Modules.SALES_CHANNEL);
   const storeModuleService = container.resolve(Modules.STORE);
 
-  const countries = ["gb", "de", "dk", "se", "fr", "es", "it"];
+  // Nature's Elixir: Europe and UK store
+  const europeCountries = ["ie", "de", "dk", "se", "fr", "es", "it"]; // Europe (EUR)
+  const ukCountries = ["gb"]; // United Kingdom (GBP)
 
-  logger.info("Seeding store data...");
+  logger.info("Seeding Nature's Elixir store data...");
   const [store] = await storeModuleService.listStores();
   let defaultSalesChannel = await salesChannelModuleService.listSalesChannels({
     name: "Default Sales Channel",
@@ -86,6 +91,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
     defaultSalesChannel = salesChannelResult;
   }
 
+  // Nature's Elixir: EUR primary currency, GBP secondary
   await updateStoreCurrencies(container).run({
     input: {
       store_id: store.id,
@@ -95,7 +101,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           is_default: true,
         },
         {
-          currency_code: "usd",
+          currency_code: "gbp",
         },
       ],
     },
@@ -110,24 +116,34 @@ export default async function seedDemoData({ container }: ExecArgs) {
     },
   });
   logger.info("Seeding region data...");
+  // Nature's Elixir: Europe region (EUR) and UK region (GBP) with Stripe payment
   const { result: regionResult } = await createRegionsWorkflow(container).run({
     input: {
       regions: [
         {
           name: "Europe",
           currency_code: "eur",
-          countries,
-          payment_providers: ["pp_system_default"],
+          countries: europeCountries,
+          payment_providers: ["pp_stripe_stripe"],
+        },
+        {
+          name: "United Kingdom",
+          currency_code: "gbp",
+          countries: ukCountries,
+          payment_providers: ["pp_stripe_stripe"],
         },
       ],
     },
   });
-  const region = regionResult[0];
+  const europeRegion = regionResult.find((r) => r.name === "Europe")!;
+  const ukRegion = regionResult.find((r) => r.name === "United Kingdom")!;
   logger.info("Finished seeding regions.");
 
   logger.info("Seeding tax regions...");
+  // Create tax regions for all countries
+  const allCountries = [...europeCountries, ...ukCountries];
   await createTaxRegionsWorkflow(container).run({
-    input: countries.map((country_code) => ({
+    input: allCountries.map((country_code) => ({
       country_code,
       provider_id: "tp_system",
     })),
@@ -135,17 +151,18 @@ export default async function seedDemoData({ container }: ExecArgs) {
   logger.info("Finished seeding tax regions.");
 
   logger.info("Seeding stock location data...");
+  // Nature's Elixir: Dublin stock location (Jim's garage)
   const { result: stockLocationResult } = await createStockLocationsWorkflow(
     container
   ).run({
     input: {
       locations: [
         {
-          name: "European Warehouse",
+          name: "Nature's Elixir - Dublin",
           address: {
-            city: "Copenhagen",
-            country_code: "DK",
-            address_1: "",
+            city: "Dublin",
+            country_code: "IE",
+            address_1: "", // To be updated with Jim's address
           },
         },
       ],
@@ -192,17 +209,32 @@ export default async function seedDemoData({ container }: ExecArgs) {
     shippingProfile = shippingProfileResult[0];
   }
 
+  // Nature's Elixir: Multiple shipping zones (Ireland, UK, Europe)
   const fulfillmentSet = await fulfillmentModuleService.createFulfillmentSets({
-    name: "European Warehouse delivery",
+    name: "Nature's Elixir - Dublin Delivery",
     type: "shipping",
     service_zones: [
       {
-        name: "Europe",
+        name: "Ireland",
+        geo_zones: [
+          {
+            country_code: "ie",
+            type: "country",
+          },
+        ],
+      },
+      {
+        name: "United Kingdom",
         geo_zones: [
           {
             country_code: "gb",
             type: "country",
           },
+        ],
+      },
+      {
+        name: "Europe",
+        geo_zones: [
           {
             country_code: "de",
             type: "country",
@@ -241,31 +273,33 @@ export default async function seedDemoData({ container }: ExecArgs) {
     },
   });
 
+  // Nature's Elixir: Shipping options for Ireland, UK, and Europe
+  const irelandZone = fulfillmentSet.service_zones.find((z) => z.name === "Ireland")!;
+  const ukZone = fulfillmentSet.service_zones.find((z) => z.name === "United Kingdom")!;
+  const europeZone = fulfillmentSet.service_zones.find((z) => z.name === "Europe")!;
+
   await createShippingOptionsWorkflow(container).run({
     input: [
+      // Ireland shipping options (EUR)
       {
-        name: "Standard Shipping",
+        name: "Standard Shipping (Ireland)",
         price_type: "flat",
         provider_id: "manual_manual",
-        service_zone_id: fulfillmentSet.service_zones[0].id,
+        service_zone_id: irelandZone.id,
         shipping_profile_id: shippingProfile.id,
         type: {
           label: "Standard",
-          description: "Ship in 2-3 days.",
+          description: "Standard shipping within Ireland. Delivery in 3-5 business days.",
           code: "standard",
         },
         prices: [
           {
-            currency_code: "usd",
-            amount: 10,
-          },
-          {
             currency_code: "eur",
-            amount: 10,
+            amount: 500, // €5.00
           },
           {
-            region_id: region.id,
-            amount: 10,
+            region_id: europeRegion.id,
+            amount: 500,
           },
         ],
         rules: [
@@ -282,28 +316,162 @@ export default async function seedDemoData({ container }: ExecArgs) {
         ],
       },
       {
-        name: "Express Shipping",
+        name: "Express Shipping (Ireland)",
         price_type: "flat",
         provider_id: "manual_manual",
-        service_zone_id: fulfillmentSet.service_zones[0].id,
+        service_zone_id: irelandZone.id,
         shipping_profile_id: shippingProfile.id,
         type: {
           label: "Express",
-          description: "Ship in 24 hours.",
+          description: "Express shipping within Ireland. Delivery in 1-2 business days.",
           code: "express",
         },
         prices: [
           {
-            currency_code: "usd",
-            amount: 10,
+            currency_code: "eur",
+            amount: 1000, // €10.00
           },
+          {
+            region_id: europeRegion.id,
+            amount: 1000,
+          },
+        ],
+        rules: [
+          {
+            attribute: "enabled_in_store",
+            value: "true",
+            operator: "eq",
+          },
+          {
+            attribute: "is_return",
+            value: "false",
+            operator: "eq",
+          },
+        ],
+      },
+      // UK shipping options (GBP)
+      {
+        name: "Standard Shipping (UK)",
+        price_type: "flat",
+        provider_id: "manual_manual",
+        service_zone_id: ukZone.id,
+        shipping_profile_id: shippingProfile.id,
+        type: {
+          label: "Standard",
+          description: "Standard shipping to United Kingdom. Delivery in 5-7 business days.",
+          code: "standard",
+        },
+        prices: [
+          {
+            currency_code: "gbp",
+            amount: 800, // £8.00
+          },
+          {
+            region_id: ukRegion.id,
+            amount: 800,
+          },
+        ],
+        rules: [
+          {
+            attribute: "enabled_in_store",
+            value: "true",
+            operator: "eq",
+          },
+          {
+            attribute: "is_return",
+            value: "false",
+            operator: "eq",
+          },
+        ],
+      },
+      {
+        name: "Express Shipping (UK)",
+        price_type: "flat",
+        provider_id: "manual_manual",
+        service_zone_id: ukZone.id,
+        shipping_profile_id: shippingProfile.id,
+        type: {
+          label: "Express",
+          description: "Express shipping to United Kingdom. Delivery in 2-3 business days.",
+          code: "express",
+        },
+        prices: [
+          {
+            currency_code: "gbp",
+            amount: 1500, // £15.00
+          },
+          {
+            region_id: ukRegion.id,
+            amount: 1500,
+          },
+        ],
+        rules: [
+          {
+            attribute: "enabled_in_store",
+            value: "true",
+            operator: "eq",
+          },
+          {
+            attribute: "is_return",
+            value: "false",
+            operator: "eq",
+          },
+        ],
+      },
+      // Europe shipping options (EUR)
+      {
+        name: "Standard Shipping (Europe)",
+        price_type: "flat",
+        provider_id: "manual_manual",
+        service_zone_id: europeZone.id,
+        shipping_profile_id: shippingProfile.id,
+        type: {
+          label: "Standard",
+          description: "Standard shipping to Europe. Delivery in 7-10 business days.",
+          code: "standard",
+        },
+        prices: [
           {
             currency_code: "eur",
-            amount: 10,
+            amount: 1200, // €12.00
           },
           {
-            region_id: region.id,
-            amount: 10,
+            region_id: europeRegion.id,
+            amount: 1200,
+          },
+        ],
+        rules: [
+          {
+            attribute: "enabled_in_store",
+            value: "true",
+            operator: "eq",
+          },
+          {
+            attribute: "is_return",
+            value: "false",
+            operator: "eq",
+          },
+        ],
+      },
+      {
+        name: "Express Shipping (Europe)",
+        price_type: "flat",
+        provider_id: "manual_manual",
+        service_zone_id: europeZone.id,
+        shipping_profile_id: shippingProfile.id,
+        type: {
+          label: "Express",
+          description: "Express shipping to Europe. Delivery in 3-5 business days.",
+          code: "express",
+        },
+        prices: [
+          {
+            currency_code: "eur",
+            amount: 2000, // €20.00
+          },
+          {
+            region_id: europeRegion.id,
+            amount: 2000,
           },
         ],
         rules: [
@@ -357,211 +525,99 @@ export default async function seedDemoData({ container }: ExecArgs) {
 
   logger.info("Seeding product data...");
 
+  // Nature's Elixir: Product categories
   const { result: categoryResult } = await createProductCategoriesWorkflow(
     container
   ).run({
     input: {
       product_categories: [
         {
-          name: "Shirts",
+          name: "Tea",
           is_active: true,
         },
         {
-          name: "Sweatshirts",
+          name: "Spartan Oils",
           is_active: true,
         },
         {
-          name: "Pants",
-          is_active: true,
-        },
-        {
-          name: "Merch",
+          name: "Natural Sponges",
           is_active: true,
         },
       ],
     },
   });
 
+  // Nature's Elixir: Products for Tea, Spartan Oils, and Natural Sponges
   await createProductsWorkflow(container).run({
     input: {
       products: [
         {
-          title: "Medusa T-Shirt",
+          title: "Organic Green Tea",
           category_ids: [
-            categoryResult.find((cat) => cat.name === "Shirts")!.id,
+            categoryResult.find((cat) => cat.name === "Tea")!.id,
           ],
           description:
-            "Reimagine the feeling of a classic T-shirt. With our cotton T-shirts, everyday essentials no longer have to be ordinary.",
-          handle: "t-shirt",
-          weight: 400,
+            "Premium organic green tea sourced from the finest tea gardens. Rich in antioxidants and naturally refreshing. Perfect for daily wellness and relaxation.",
+          handle: "organic-green-tea",
+          weight: 100, // grams
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
-          images: [
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/tee-black-front.png",
-            },
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/tee-black-back.png",
-            },
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/tee-white-front.png",
-            },
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/tee-white-back.png",
-            },
-          ],
+          images: [], // To be added with actual product images
           options: [
             {
               title: "Size",
-              values: ["S", "M", "L", "XL"],
-            },
-            {
-              title: "Color",
-              values: ["Black", "White"],
+              values: ["50g", "100g", "250g"],
             },
           ],
           variants: [
             {
-              title: "S / Black",
-              sku: "SHIRT-S-BLACK",
+              title: "50g",
+              sku: "TEA-GREEN-50G",
               options: {
-                Size: "S",
-                Color: "Black",
+                Size: "50g",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 800, // €8.00
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
-                  currency_code: "usd",
+                  amount: 700, // £7.00
+                  currency_code: "gbp",
                 },
               ],
             },
             {
-              title: "S / White",
-              sku: "SHIRT-S-WHITE",
+              title: "100g",
+              sku: "TEA-GREEN-100G",
               options: {
-                Size: "S",
-                Color: "White",
+                Size: "100g",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 1400, // €14.00
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
-                  currency_code: "usd",
+                  amount: 1200, // £12.00
+                  currency_code: "gbp",
                 },
               ],
             },
             {
-              title: "M / Black",
-              sku: "SHIRT-M-BLACK",
+              title: "250g",
+              sku: "TEA-GREEN-250G",
               options: {
-                Size: "M",
-                Color: "Black",
+                Size: "250g",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 3000, // €30.00
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "M / White",
-              sku: "SHIRT-M-WHITE",
-              options: {
-                Size: "M",
-                Color: "White",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "L / Black",
-              sku: "SHIRT-L-BLACK",
-              options: {
-                Size: "L",
-                Color: "Black",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "L / White",
-              sku: "SHIRT-L-WHITE",
-              options: {
-                Size: "L",
-                Color: "White",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "XL / Black",
-              sku: "SHIRT-XL-BLACK",
-              options: {
-                Size: "XL",
-                Color: "Black",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "XL / White",
-              sku: "SHIRT-XL-WHITE",
-              options: {
-                Size: "XL",
-                Color: "White",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  amount: 2600, // £26.00
+                  currency_code: "gbp",
                 },
               ],
             },
@@ -573,96 +629,72 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
         },
         {
-          title: "Medusa Sweatshirt",
+          title: "Lavender Essential Oil",
           category_ids: [
-            categoryResult.find((cat) => cat.name === "Sweatshirts")!.id,
+            categoryResult.find((cat) => cat.name === "Spartan Oils")!.id,
           ],
           description:
-            "Reimagine the feeling of a classic sweatshirt. With our cotton sweatshirt, everyday essentials no longer have to be ordinary.",
-          handle: "sweatshirt",
-          weight: 400,
+            "Pure lavender essential oil, known for its calming and soothing properties. Perfect for aromatherapy, relaxation, and natural wellness. 100% pure and natural.",
+          handle: "lavender-essential-oil",
+          weight: 50, // grams
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
-          images: [
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-front.png",
-            },
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png",
-            },
-          ],
+          images: [], // To be added with actual product images
           options: [
             {
-              title: "Size",
-              values: ["S", "M", "L", "XL"],
+              title: "Volume",
+              values: ["10ml", "30ml", "50ml"],
             },
           ],
           variants: [
             {
-              title: "S",
-              sku: "SWEATSHIRT-S",
+              title: "10ml",
+              sku: "OIL-LAVENDER-10ML",
               options: {
-                Size: "S",
+                Volume: "10ml",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 1200, // €12.00
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
-                  currency_code: "usd",
+                  amount: 1000, // £10.00
+                  currency_code: "gbp",
                 },
               ],
             },
             {
-              title: "M",
-              sku: "SWEATSHIRT-M",
+              title: "30ml",
+              sku: "OIL-LAVENDER-30ML",
               options: {
-                Size: "M",
+                Volume: "30ml",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 3000, // €30.00
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
-                  currency_code: "usd",
+                  amount: 2600, // £26.00
+                  currency_code: "gbp",
                 },
               ],
             },
             {
-              title: "L",
-              sku: "SWEATSHIRT-L",
+              title: "50ml",
+              sku: "OIL-LAVENDER-50ML",
               options: {
-                Size: "L",
+                Volume: "50ml",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 4500, // €45.00
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "XL",
-              sku: "SWEATSHIRT-XL",
-              options: {
-                Size: "XL",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  amount: 3900, // £39.00
+                  currency_code: "gbp",
                 },
               ],
             },
@@ -674,197 +706,72 @@ export default async function seedDemoData({ container }: ExecArgs) {
           ],
         },
         {
-          title: "Medusa Sweatpants",
+          title: "Natural Sea Sponge",
           category_ids: [
-            categoryResult.find((cat) => cat.name === "Pants")!.id,
+            categoryResult.find((cat) => cat.name === "Natural Sponges")!.id,
           ],
           description:
-            "Reimagine the feeling of classic sweatpants. With our cotton sweatpants, everyday essentials no longer have to be ordinary.",
-          handle: "sweatpants",
-          weight: 400,
+            "Premium natural sea sponge, sustainably harvested. Soft, durable, and perfect for gentle exfoliation and natural skincare. Eco-friendly and biodegradable.",
+          handle: "natural-sea-sponge",
+          weight: 50, // grams
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
-          images: [
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatpants-gray-front.png",
-            },
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatpants-gray-back.png",
-            },
-          ],
+          images: [], // To be added with actual product images
           options: [
             {
               title: "Size",
-              values: ["S", "M", "L", "XL"],
+              values: ["Small", "Medium", "Large"],
             },
           ],
           variants: [
             {
-              title: "S",
-              sku: "SWEATPANTS-S",
+              title: "Small",
+              sku: "SPONGE-SEA-SMALL",
               options: {
-                Size: "S",
+                Size: "Small",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 1500, // €15.00
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
-                  currency_code: "usd",
+                  amount: 1300, // £13.00
+                  currency_code: "gbp",
                 },
               ],
             },
             {
-              title: "M",
-              sku: "SWEATPANTS-M",
+              title: "Medium",
+              sku: "SPONGE-SEA-MEDIUM",
               options: {
-                Size: "M",
+                Size: "Medium",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 2500, // €25.00
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
-                  currency_code: "usd",
+                  amount: 2200, // £22.00
+                  currency_code: "gbp",
                 },
               ],
             },
             {
-              title: "L",
-              sku: "SWEATPANTS-L",
+              title: "Large",
+              sku: "SPONGE-SEA-LARGE",
               options: {
-                Size: "L",
+                Size: "Large",
               },
               prices: [
                 {
-                  amount: 10,
+                  amount: 3500, // €35.00
                   currency_code: "eur",
                 },
                 {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "XL",
-              sku: "SWEATPANTS-XL",
-              options: {
-                Size: "XL",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-          ],
-          sales_channels: [
-            {
-              id: defaultSalesChannel[0].id,
-            },
-          ],
-        },
-        {
-          title: "Medusa Shorts",
-          category_ids: [
-            categoryResult.find((cat) => cat.name === "Merch")!.id,
-          ],
-          description:
-            "Reimagine the feeling of classic shorts. With our cotton shorts, everyday essentials no longer have to be ordinary.",
-          handle: "shorts",
-          weight: 400,
-          status: ProductStatus.PUBLISHED,
-          shipping_profile_id: shippingProfile.id,
-          images: [
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/shorts-vintage-front.png",
-            },
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/shorts-vintage-back.png",
-            },
-          ],
-          options: [
-            {
-              title: "Size",
-              values: ["S", "M", "L", "XL"],
-            },
-          ],
-          variants: [
-            {
-              title: "S",
-              sku: "SHORTS-S",
-              options: {
-                Size: "S",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "M",
-              sku: "SHORTS-M",
-              options: {
-                Size: "M",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "L",
-              sku: "SHORTS-L",
-              options: {
-                Size: "L",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "XL",
-              sku: "SHORTS-XL",
-              options: {
-                Size: "XL",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
+                  amount: 3000, // £30.00
+                  currency_code: "gbp",
                 },
               ],
             },

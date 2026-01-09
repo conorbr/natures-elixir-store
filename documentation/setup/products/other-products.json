@@ -1,0 +1,255 @@
+{
+  "description": "Product JSON template for Nature's Elixir. This structure can be used to generate the CSV import file. All prices are in smallest currency unit (EUR in cents, GBP in pence).",
+  "csv_mapping": {
+    "product_handle": "Product Handle",
+    "product_title": "Product Title",
+    "product_subtitle": "Product Subtitle",
+    "product_description": "Product Description",
+    "product_status": "Product Status",
+    "product_thumbnail": "Product Thumbnail",
+    "product_weight": "Product Weight",
+    "shipping_profile": "Shipping Profile Id (default or fragile)",
+    "category": "Product Collection Id (Tea, Spartan Oils, Natural Sponges, etc.)",
+    "variant_title": "Variant Title",
+    "variant_sku": "Variant SKU",
+    "variant_price_eur": "Variant Price EUR (in cents)",
+    "variant_price_gbp": "Variant Price GBP (in pence) - Note: CSV template shows USD, but we use GBP",
+    "variant_option_1_name": "Variant Option 1 Name",
+    "variant_option_1_value": "Variant Option 1 Value",
+    "manage_inventory": "Variant Manage Inventory",
+    "allow_backorder": "Variant Allow Backorder"
+  },
+  "products": [
+    {
+      "product_handle": "natural-sea-sponge",
+      "product_title": "Natural Sea Sponge",
+      "product_subtitle": "",
+      "product_description": "Soft natural sea sponges offer pampering at bath time, helping to restore your skins natural radiance. They effectively and efficiently cleanse the skin, helping to remove dead skin cells and promoting gorgeous soft skin in minutes. Suitable for use on all skin types, particularly sensitive skins. A properly cared for sea sponge will last for many years, it is important to let them dry after each use. Free from bleach, petroleum and toxins and only contain natural enzymes. Benefits of the Natural Sea Sponge: \u2013 Sea Sponges are permeated with natural enzymes that inhibit the growth of mould, mildew and bacteria \u2013 Promotes softer, smoother skin after each use \u2013 A natural sponge will hold two to three times as much water as an artificial one \u2013 Natural Sponges are more resistant to acids",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 50,
+      "shipping_profile": "default",
+      "category": "Natural Sponges",
+      "variants": [
+        {
+          "variant_title": "Small",
+          "variant_sku": "SPONGE-SEA-SMALL",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "Small",
+          "manage_inventory": false,
+          "allow_backorder": true
+        },
+        {
+          "variant_title": "Medium",
+          "variant_sku": "SPONGE-SEA-MEDIUM",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "Medium",
+          "manage_inventory": false,
+          "allow_backorder": true
+        },
+        {
+          "variant_title": "Large",
+          "variant_sku": "SPONGE-SEA-LARGE",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "Large",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "shilajit",
+      "product_title": "Shilajit",
+      "product_subtitle": "",
+      "product_description": "Shilajit is a natural substance found in the Himalayas, formed for centuries by the gradual decomposition of certain plants by the action of microorganisms. It is a potent and very safe dietary supplement, restoring the energetic balance and potentially able to prevent several diseases. Nature's Elixir's shilajit is gold grade, it comes from 17,000 + feet and is sun dried. It is the best on the market. It contains 85+ ionic minerals and Fulvic and Humic acid (the two most important acids for the body). Used by Olympic athletes, astronauts and Hollywood actors. \u2022 Rejuvenates the skin and all cells. It is anti- aging for the brain and body. \u2022 Improves mood, reduces anxiety, balances emotions and brain function\u2013 an elite adaptogen. \u2022 Improves energy naturally (no caffeine) in the short and long term. \u2022 De-Tox effectively \u2013 shilajit binds to toxins and heavy metals (that cause heart disease, thyroid problems, dementia) and removes them from the blood stream. It nourishes your body back to health if you have toxins backed up or mineral deficiencies. \u2022 Very effective testosterone booster (nature's Viagra). Enhances libido in men and women. \u2022 Lose weight, improve workouts and increase stamina. \u2022 Enhances the absorption of vitamins and other supplements. \u2022 Improves sleep, immunity system, digestion and the gut. \u2022 Many other benefits including arthritis, rheumatism, osteoporosis and liver function. \u2022 Some people take shilajit to help relieve altitude sickness and boost their sperm count. \u2022 Slow Alzheimer's Progression. Shilajit contains an antioxidant known as fulvic acid. A 2012 study found that fulvic acid in shilajit may help block the buildup of tau\u2014a type of protein.Tau is considered a key marker of Alzheimer's disease and similar diseases.  \u2022 Lower Cholesterol and triglycerides significantly. \u2022 Boost Collagen Synthesis. Collagen is an abundant protein in the body that is a major component of bone, skin, muscles, tendons, and cartilage. Collagen synthesis is important for maintaining healthy skin, joints, and muscles as you age because your body's natural production gradually declines. \u2022 Maintain Bone Health. Bone loss is a significant concern in menopausal women. Up to 20% of bone loss can occur during perimenopause and menopause, and approximately one in 10 women over the age of 60 are affected by osteoporosis worldwide. \u2022 Prevent Iron-Deficiency Anemia. Shilajit may prevent iron-deficiency anemia because it naturally contains iron.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 30,
+      "shipping_profile": "default",
+      "category": "Wellness Supplements",
+      "variants": [
+        {
+          "variant_title": "15g",
+          "variant_sku": "SUPP-SHILAJIT-15G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "15g",
+          "manage_inventory": false,
+          "allow_backorder": true
+        },
+        {
+          "variant_title": "30g",
+          "variant_sku": "SUPP-SHILAJIT-30G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "30g",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "ashwagandha-30-gram",
+      "product_title": "Ashwagandha 30 Gram",
+      "product_subtitle": "",
+      "product_description": "Ashwagandha began to be used thousands of years ago and forms part of what's known as Ayurveda, or traditional Indian medicine.The root of this plant, a small shrub with small leaves and orange-red fruits shaped like berries, has very well-known adaptogenic properties. But it can also exert many more positive actions. There are many well-known benefits of using ashwagandha: It has a general rejuvenating effect and helps to maintain skin health. It protects skin tissue from damage and protects overall health through its antioxidant activity.  It helps to maintain physical and mental capacity when we feel weak, exhausted, tired or lose concentration. It offers support in times of mental stress, nervousness and anxiety. It supports optimum relaxation, emotional balance and overall wellbeing. It also helps calm your mind and enhance physical wellbeing.  It helps maintain energy levels and increase muscle mass and weight because it helps develop muscle. It helps maintain feelings of physical and mental energy and vitality and helps maintain the body's vitality. It is also considered an energy tonic and stimulator for the body.  It helps keep your heart and cardiovascular system, and respiratory system healthy. It supports female reproductive organ health and helps maintain strength during pregnancy. It supports male sexual function and helps maintain sperm mobility.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 30,
+      "shipping_profile": "default",
+      "category": "Wellness Supplements",
+      "variants": [
+        {
+          "variant_title": "30g",
+          "variant_sku": "SUPP-ASHWAGANDHA-30G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "30g",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "moringa-30-gram",
+      "product_title": "Moringa 30 Gram",
+      "product_subtitle": "",
+      "product_description": "Moringa offers benefits including being a nutritious food source rich in vitamins, minerals, and protein, and contains all nine essential amino acids. It has potent anti-inflammatory and antioxidant properties that helps to manage blood sugar and cholesterol levels, boost the immune system, and protects organs like the liver. Menopausal symptom relief: Some research shows it may alleviate menopausal symptoms like hot flashes.  Male reproductive health: Early research suggests potential benefits for prostate health, erectile dysfunction, and male fertility.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 30,
+      "shipping_profile": "default",
+      "category": "Wellness Supplements",
+      "variants": [
+        {
+          "variant_title": "30g",
+          "variant_sku": "SUPP-MORINGA-30G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "30g",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "gok-shura",
+      "product_title": "Gok Shura",
+      "product_subtitle": "",
+      "product_description": "Gokshura (Tribulus terrestris) is a popular medicinal plant in traditional Ayurvedic and Chinese medicine. It has antioxidant properties, improve sexual function and aid erectile dysfunction, increase testosterone, boost your libido, reduce blood sugar levels, benefit women's health, reduce blood pressure, reduce inflammation, treat kidney stones, and provide pain relief.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 30,
+      "shipping_profile": "default",
+      "category": "Wellness Supplements",
+      "variants": [
+        {
+          "variant_title": "One Size",
+          "variant_sku": "SUPP-GOK-SHURA",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "One Size",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "tea-strainer",
+      "product_title": "Tea Strainer",
+      "product_subtitle": "",
+      "product_description": "This classic stainless steel tea ball is a 2.1 inch premium mesh tea infuser/strainer used for loose tea leaves. The chain and hook make it easy to put the tea ball into the cup so that the tea leaf is fully soaked. The hook is super easy to hang on your cup, so no need to worry about going fishing for the ball!",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 50,
+      "shipping_profile": "default",
+      "category": "Other Products",
+      "variants": [
+        {
+          "variant_title": "One Size",
+          "variant_sku": "ACC-TEA-STRAINER",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "One Size",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "aleppo-soap",
+      "product_title": "Aleppo Soap",
+      "product_subtitle": "",
+      "product_description": "Aleppo soap is the world's oldest soap and a pure, natural product made from fine olive oil, laurel oil, water and lye. It is palm oil free. This traditional formula contains no colours, chemicals or perfume. Compared to the soaps of today, Aleppo soap supports your skin's own balance, making it suitable for all skin types. You can use Aleppo Soap as a substitute for body-wash and shampoo, to wash your hair or beard. Benefits Attributed to: \u2013 The laurel oil and olive oil content keep the skin moisturized. \u2013 Restores the pH balance in the skin. \u2013 The anti-inflammatory properties help with skin irritation, making it perfect for sensitive skin.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Soap Products",
+      "variants": [
+        {
+          "variant_title": "One Size",
+          "variant_sku": "SOAP-ALEPPO",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "One Size",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "dead-sea-black-mud-soap",
+      "product_title": "Dead Sea Black Mud Soap",
+      "product_subtitle": "",
+      "product_description": "The Dead Sea is a salt water lake in the Middle East, located between Israel and Jordan. The geographical features of the Dead Sea makes the surrounding silt and mud rich with a unique combination of minerals like magnesium, sodium, and potassium. It is made according to an old family recipe using olive, coconut and vegetable oil. It is free of detergents and animal fat and filled with the unique minerals of the Dead sea. Pure and un-perfumed, this soap removes dead skin cells and impurities. Benefits attributed to: \u2013 Hydrating and firming properties \u2013 Soothes itchiness and inflammation \u2013 Reduces the appearance of pores \u2013 Smoothes the appearance of fine lines and wrinkles",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Soap Products",
+      "variants": [
+        {
+          "variant_title": "One Size",
+          "variant_sku": "SOAP-DEAD-SEA-MUD",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "One Size",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    }
+  ],
+  "metadata": {
+    "total_products": 8,
+    "categories": {
+      "Natural Sponges": 1,
+      "Wellness Supplements": 4,
+      "Other Products": 1,
+      "Soap Products": 2
+    }
+  }
+}

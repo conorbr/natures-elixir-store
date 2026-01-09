@@ -1,0 +1,340 @@
+{
+  "description": "Product JSON template for Nature's Elixir. This structure can be used to generate the CSV import file. All prices are in smallest currency unit (EUR in cents, GBP in pence).",
+  "csv_mapping": {
+    "product_handle": "Product Handle",
+    "product_title": "Product Title",
+    "product_subtitle": "Product Subtitle",
+    "product_description": "Product Description",
+    "product_status": "Product Status",
+    "product_thumbnail": "Product Thumbnail",
+    "product_weight": "Product Weight",
+    "shipping_profile": "Shipping Profile Id (default or fragile)",
+    "category": "Product Collection Id (Tea, Spartan Oils, Natural Sponges, etc.)",
+    "variant_title": "Variant Title",
+    "variant_sku": "Variant SKU",
+    "variant_price_eur": "Variant Price EUR (in cents)",
+    "variant_price_gbp": "Variant Price GBP (in pence) - Note: CSV template shows USD, but we use GBP",
+    "variant_option_1_name": "Variant Option 1 Name",
+    "variant_option_1_value": "Variant Option 1 Value",
+    "manage_inventory": "Variant Manage Inventory",
+    "allow_backorder": "Variant Allow Backorder"
+  },
+  "products": [
+    {
+      "product_handle": "lavender-essential-oil",
+      "product_title": "Lavender Essential Oil",
+      "product_subtitle": "",
+      "product_description": "A calming and therapeutic oil, Lavender has been used for centuries. Taking its name from the Latin Lavare, meaning to \"to wash\", Lavender possesses a clean, pure aroma.  Lavender oil is known for its potential benefits, including reducing anxiety and stress, improving sleep, and soothing skin irritations. It also possesses antibacterial, antifungal, anti-inflammatory, and antioxidant properties that can aid in wound healing, muscle pain relief, and skin issues like acne and hyperpigmentation.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-LAVENDER-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "peppermint-essential-oil",
+      "product_title": "Peppermint Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Today, peppermint is promoted for irritable bowel syndrome (IBS), indigestion, headaches, muscle tension, nausea, and other conditions.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-PEPPERMINT-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "frankincense-essential-oil",
+      "product_title": "Frankincense Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Pure frankincense essential oil. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-FRANKINCENSE-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "sandalwood-essential-oil",
+      "product_title": "Sandalwood Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Pure sandalwood essential oil. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-SANDALWOOD-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "cedarwood-essential-oil",
+      "product_title": "Cedarwood Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Pure cedarwood essential oil. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-CEDARWOOD-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "aniseed-essential-oil",
+      "product_title": "Aniseed Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Pure aniseed essential oil. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-ANISEED-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "citronella-essential-oil",
+      "product_title": "Citronella Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Pure citronella essential oil. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-CITRONELLA-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "eucalyptus-essential-oil",
+      "product_title": "Eucalyptus Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Pure eucalyptus essential oil. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-EUCALYPTUS-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "tea-tree-essential-oil",
+      "product_title": "Tea Tree Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Pure tea tree essential oil. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-TEA-TREE-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "rosemary-essential-oil",
+      "product_title": "Rosemary Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Pure rosemary essential oil. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-ROSEMARY-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "may-chang-essential-oil",
+      "product_title": "May Chang Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Pure May Chang essential oil. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-MAY-CHANG-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "bergamot-essential-oil",
+      "product_title": "Bergamot Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Bergamot essential oil offers benefits for relaxation, stress reduction, and mood improvement through aromatherapy, as well as potential benefits for skin health, digestion, and immune support. Its ability to promote relaxation by lowering stress hormones like cortisol is well-documented, and it can help with skin issues like acne and inflammation due to its antibacterial and anti-inflammatory properties.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-BERGAMOT-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "spartan-healing-oil",
+      "product_title": "Spartan Healing Oil",
+      "product_subtitle": "",
+      "product_description": "Spartan Healing Oil has been known throughout history as a wound healer and was applied to their bodies after battles by the Spartans and the Crusaders. Though the plant may be known today as an anti-depressant and sedative, it is historically more important as a healing herb and is mentioned as such by many ancient Greek authors such as Hippocrates (the founder of medicine) and Dioscurides. \u2013 Ideal for all therapeutic massages and relaxing \u2013 Helps in the treatment of arthritis and joint pains \u2013 Helps in the treatment of stomach pains, mild ulcers and gastroenteritis \u2013 Helps in the treatment of first degree burns - Helps in the treatment of all skin problems",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-SPARTAN-HEALING-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": false,
+          "allow_backorder": true
+        }
+      ],
+      "images": []
+    }
+  ],
+  "metadata": {
+    "total_products": 13,
+    "category": "Spartan Oils"
+  }
+}

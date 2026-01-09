@@ -1,0 +1,2001 @@
+{
+  "description": "Product JSON template for Nature's Elixir. This structure can be used to generate the CSV import file. All prices are in smallest currency unit (EUR in cents, GBP in pence).",
+  "csv_mapping": {
+    "product_handle": "Product Handle",
+    "product_title": "Product Title",
+    "product_subtitle": "Product Subtitle",
+    "product_description": "Product Description",
+    "product_status": "Product Status",
+    "product_thumbnail": "Product Thumbnail",
+    "product_weight": "Product Weight",
+    "shipping_profile": "Shipping Profile Id (default or fragile)",
+    "category": "Product Collection Id (Tea, Spartan Oils, Natural Sponges, etc.)",
+    "variant_title": "Variant Title",
+    "variant_sku": "Variant SKU",
+    "variant_price_eur": "Variant Price EUR (in cents)",
+    "variant_price_gbp": "Variant Price GBP (in pence) - Note: CSV template shows USD, but we use GBP",
+    "variant_option_1_name": "Variant Option 1 Name",
+    "variant_option_1_value": "Variant Option 1 Value",
+    "manage_inventory": "Variant Manage Inventory",
+    "allow_backorder": "Variant Allow Backorder"
+  },
+  "products": [
+    {
+      "product_handle": "apricot-delight-tea",
+      "product_title": "Apricot Delight Tea",
+      "product_subtitle": "",
+      "product_description": "Apricot Tea is a deliciously fruity tea with the sweet juiciness of apricots. This tea offers a smooth, well-rounded flavour that is ideal for relaxing moments, whether enjoyed warm or as a refreshing iced tea. With each cup, you imbibe a blend of wellness and indulgence that has been revered for centuries. Benefits attributed to: Rich in potent antioxidants, can help fight free radicals and reduce oxidative stress, contributing to overall health and wellness.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-APRICOT-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-APRICOT-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-APRICOT-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "breakfast-tea",
+      "product_title": "Breakfast Tea",
+      "product_subtitle": "",
+      "product_description": "Breakfast tea (contains caffeine) is the Rolls Royce of traditional teas. It is made from a blend of Assam, Ceylon, and Kenyan teas. It has a full taste and richness and has a far superior taste to those you might make with a teabag (which is tainted by plastic, glue and bleach). Benefits Attributed to: – Improves Heart Health – Reduces Cholesterol Levels – Promotes Mental Health – Helps to Detox.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-BREAKFAST-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-BREAKFAST-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-BREAKFAST-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "cacao-tea",
+      "product_title": "Cacao Tea",
+      "product_subtitle": "",
+      "product_description": "Cacao tea (also known as chocolate tea) is a light and refreshing hot drink made from the husk of cacao beans. Cacao husks contain theobromine which some people find has a stimulant effect. Theobromine releases energy in a slower, more gentle way than caffeine, so you're less likely to have peaks and crashes. Also packed with antioxidants, flavonoids and magnesium. Benefits attributed to: -Mood enhancement -Heart health support -Improve blood flow -Reduces inflammation -Supports digestion, and provide minerals for focus and immunity",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-CACAO-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-CACAO-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-CACAO-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "calendula-tea",
+      "product_title": "Calendula Tea",
+      "product_subtitle": "",
+      "product_description": "Calendula is a fresh, light and very drinkable cup of tea. It has an earthy flavour at its base. The other prominent flavours include a hint of spiciness and a pepper flavour. The most impressive health benefit of calendula is its ability to improve the appearance of the skin and as a treatment for candida. Benefits attributed to: – Skin and eye care – Oral health – Reduces inflammation – Eliminates cramps",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-CALENDULA-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-CALENDULA-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-CALENDULA-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "chamomile-tea",
+      "product_title": "Chamomile Tea",
+      "product_subtitle": "",
+      "product_description": "Finalist in Blas na hEireann (Irish Food Awards) in 2021. Chamomile has gentle notes of apple, with a honey-like sweetness. It has a silky mouth feel with a clean, delicately floral taste, and even from the very first sip it feels wonderfully soothing. It has been praised over the years for its health benefits for digestion, skin complaints, relieving hay fever, easing anxiety and promoting peaceful sleep. Benefits attributed to: – Eases anxiety and promotes peaceful sleep – Diuretic, reduces weight caused by bloating – Full of antioxidants – Great for the skin (anti-ageing) and the hair",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-CHAMOMILE-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-CHAMOMILE-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-CHAMOMILE-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "dandelion-tea",
+      "product_title": "Dandelion Tea",
+      "product_subtitle": "",
+      "product_description": "Dandelion has a similar taste to coffee, but it's less acidic and bitter. It has an earthy and herbaceous flavour. Dandelions are one of the rare super foods, and are packed full of vitamins, minerals and fibre. A great tea for getting rid of retained fluid (bloating), which is the hardest weight to lose. Benefits attributed to: – Reduces blood sugars – Supports the liver function – Boosts the immune system – Reduces cholesterol -Reduces weight by getting rid of retained fluid",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-DANDELION-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-DANDELION-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-DANDELION-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "dittany-tea",
+      "product_title": "Dittany Tea",
+      "product_subtitle": "",
+      "product_description": "Dittany has a strong, sharp and slightly bitter flavour, with a savoury nuance that reminds you of thyme. The scent is reminiscent of lemon and lavender. It is a powerful, restorative healing herb and is famed as a love potion in Greek mythology. Benefits attributed to: – Aids weight loss by stimulating the digestive system – Soothes the stomach and intestines – Anti-cellulite and anti-ageing – Good for colds and flu",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-DITTANY-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-DITTANY-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-DITTANY-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "devils-claw-tea",
+      "product_title": "Devil's Claw Tea",
+      "product_subtitle": "",
+      "product_description": "Devil's Claw does not have an odour, but it does have a slightly bitter taste. It is used for \"hardening of the arteries\" (atherosclerosis), arthritis, gout, muscle pain (myalgia), back pain, fibromyalgia and tendonitis. Benefits attributed to: – Relief from arthritis – Relief from muscle pain – Relief from back pain – Relief from tendonitis -Apply to the skin for injuries and other skin conditions",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-DEVILS-CLAW-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-DEVILS-CLAW-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-DEVILS-CLAW-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "earl-grey-tea",
+      "product_title": "Earl Grey Tea",
+      "product_subtitle": "",
+      "product_description": "Classic Earl Grey tea with bergamot. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-EARL-GREY-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-EARL-GREY-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-EARL-GREY-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "echinacea-tea",
+      "product_title": "Echinacea Tea",
+      "product_subtitle": "",
+      "product_description": "The taste of Echinacea tea is often described as tongue-tingling. In fact, some regard this quality as evidence of the herb's effectiveness. Echinacea is commonly combined with mint or honey to make a more pleasant-tasting tea. It is most famous for boosting the immune system. Benefits attributed to: – Helps to fight colds and flu – Assists in controlling blood sugar – Helps manage anxiety – Lowers blood pressure",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-ECHINACEA-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-ECHINACEA-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-ECHINACEA-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "fennel-tea",
+      "product_title": "Fennel Tea",
+      "product_subtitle": "",
+      "product_description": "Digestive fennel tea. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-FENNEL-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-FENNEL-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-FENNEL-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "green-tea",
+      "product_title": "Green Tea",
+      "product_subtitle": "",
+      "product_description": "Green tea (contains caffeine) is typically green, yellow or light brown in colour, and its flavour profile can range from grass-like to vegetal and sweet. Our green tea is Royal Gunpowder and if you know your green teas you will know that it is excellent and hard to match taste and quality wise. The many health benefits of green tea make it a great drink to include in your diet. Benefits attributed to: – Can provide heart benefits – Helps to lower cholesterol – Assists in reducing inflammation – Aids focus and attention span",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-GREEN-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-GREEN-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-GREEN-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "hibiscus-tea",
+      "product_title": "Hibiscus Tea",
+      "product_subtitle": "",
+      "product_description": "Hibiscus tea has a flavour profile that includes fruity, sweet, sour, and astringent notes. It is often compared to cranberries due to its tart yet sweet flavour. It is frequently brewed hot, but also makes an excellent iced tea. It's health benefits include its ability to reduce high blood pressure, high cholesterol, and inflammatory problems. Benefits attributed to: – Relief from headaches/ migraine – Relieves menstrual pain – Anti-depressant – Improves heart health and blood circulation",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-HIBISCUS-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-HIBISCUS-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-HIBISCUS-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "jasmine-tea",
+      "product_title": "Jasmine Tea",
+      "product_subtitle": "",
+      "product_description": "Jasmine tea has a delicate and subtle flavour profile with sweet floral notes, a fresh finish and a perfumed aroma. It is popular around the globe – and not only for its good taste! It has many health benefits that include improved cardiovascular health, stronger immune system, and prevention of diabetes. Benefits attributed to: – Boosts energy – Weight loss aid – Protects heart health – Relieves stress",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-JASMINE-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-JASMINE-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-JASMINE-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "lavender-tea",
+      "product_title": "Lavender Tea",
+      "product_subtitle": "",
+      "product_description": "Lavender tea has a unique and distinctive pleasant flavour with a floral aroma. It helps to relax the body, reducing muscle spasms, promoting healthy digestion, and aiding sleep. Benefits attributed to: – Relieves stress, improves mood and promotes restful sleep – Lowers skin irritation – Reduces inflammation – Prevents infections",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-LAVENDER-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-LAVENDER-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-LAVENDER-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "lemon-balm-tea",
+      "product_title": "Lemon Balm Tea",
+      "product_subtitle": "",
+      "product_description": "Lemon balm tea is pleasantly mild, with subtle citrus notes. It has a pleasing lemon citric scent. It is traditionally used to support digestion and relieve nervous tension. Benefits attributed to: – Helps to relieve stress and reduce anxiety – Boosts cognitive function, mental clarity, concentration and relaxation – Eases insomnia and other sleep disorders – Assists in treating cold sores",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-LEMON-BALM-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-LEMON-BALM-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-LEMON-BALM-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "lemon-verbena-tea",
+      "product_title": "Lemon Verbena Tea",
+      "product_subtitle": "",
+      "product_description": "Our first entrant in Blas na hEireann (2021) and our first Gold winner. It has a stunning taste and is beautifully calming. Lemon verbena tea has a bright, slightly sweet, herbaceous flavour with a hint of lemon. Its delicious taste makes it extremely popular amongst tea drinkers. It is also popularly taken to sooth the nerves and for weight loss. Benefits attributed to: – Aids in weight loss – Reduces joint pain – Boosts the immune system – Assists in reducing fever",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-LEMON-VERBENA-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-LEMON-VERBENA-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-LEMON-VERBENA-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "linden-tea",
+      "product_title": "Linden Tea",
+      "product_subtitle": "",
+      "product_description": "Linden tea has a quite complex overall flavour. It is sweet with a pleasant delicate floral taste. The overall infusion is quite refreshing and has a very slight citrusy note to it. It has the ability to improve the immune system, detoxify the body and eliminate anxiety. Benefits attributed to: – Relieves anxiety and promotes relaxation – Prevents chronic diseases – Detoxifies the body – Reduces colds and flu",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-LINDEN-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-LINDEN-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-LINDEN-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "liquorice-tea",
+      "product_title": "Liquorice Tea",
+      "product_subtitle": "",
+      "product_description": "Liquorice tea has a sweet flavour and full-bodied richness, and is similar to that of anise and fennel. Benefits attributed to: – Improves heartburn – Controlling high cholesterol – Treating high potassium levels – Easing muscle cramps",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-LIQUORICE-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-LIQUORICE-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-LIQUORICE-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "marrubium-tea",
+      "product_title": "Marrubium Tea",
+      "product_subtitle": "",
+      "product_description": "Marrubium tea's flavour is often described as a middle ground between root beer and liquorice, having said that it does have a slightly bitter taste. It is extremely effective for lung and breathing problems including cough, whooping cough, asthma, tuberculosis and bronchitis. Benefits attributed to: – Protects and boosts the immune system – Extremely effective for lung and breathing problems – Excellent for coughs, whooping cough, asthma, tuberculosis and bronchitis. – Helps to manage diabetes",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-MARRUBIUM-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-MARRUBIUM-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-MARRUBIUM-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "mint-tea",
+      "product_title": "Mint Tea",
+      "product_subtitle": "",
+      "product_description": "Our second entrant in Blas na hEireann / Irish Food Awards in 2022. We were delighted that it received the Bronze award. Mint tea has a slightly spicy peppermint flavour with a tiny bit of sweetness and a touch of minty flavour. The amazing health benefits of mint tea include improved digestion, weight loss, relief from nausea, depression, fatigue, and headache. It gives you a lovely clean and fresh smelling mouth, hence why it is used in toothpaste and to flavour sweets. Benefits attributed to: – Aids proper digestion and weight loss – Relief from nausea, depression, fatigue and headache – Treatment of asthma, memory loss and skin care problems (pimples) – Mouth and breath freshener",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-MINT-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-MINT-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-MINT-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "nettle-tea",
+      "product_title": "Nettle Tea",
+      "product_subtitle": "",
+      "product_description": "Nettle tea tastes like mild spinach without the strong iron flavour. It's green and grassy-tasting, not unlike other dark leafy plants, with a slight peppery taste. It helps the body to process and flush away toxins, and cleans the kidneys and bladder to prevent and soothe urinary tract infections. Benefits attributed to: – Anti-inflammatory and antihistamine properties – Assists with urinary tract infections – Gives a radiant look – Acts as a face cleanser, helps with scars, blemishes and eczema",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-NETTLE-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-NETTLE-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-NETTLE-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "passion-flower-tea",
+      "product_title": "Passion Flower Tea",
+      "product_subtitle": "",
+      "product_description": "Passion flower tea has a very mild taste with a slightly grassy, floral flavour to it and a little bit of an earthy note. It boasts many different benefits including the ability to reduce anxiety, treat sleep disorders, prevent depression, and stimulate the libido. It has tremendous calming effects. Benefits attributed to: – Reduces anxiety and nervousness – Great for a good night's sleep – Lowers blood pressure – Full of antioxidants",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-PASSION-FLOWER-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-PASSION-FLOWER-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-PASSION-FLOWER-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "rooibos-tea",
+      "product_title": "Rooibos Tea",
+      "product_subtitle": "",
+      "product_description": "Rooibos tea is incredibly smooth and gentle with a natural sweetness and slightly nutty taste, when brewed for longer it is full-bodied and rich. Consumed in southern Africa for centuries, it has become a beloved drink around the world. It is known for its beneficial effects on those suffering from colic or diabetes, and it has the potential to alleviate headaches. Benefits attributed to: – Packed with antioxidants and polyphenols – Boosts heart health – Benefits people with type 2 diabetes – Aids bone health",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-ROOIBOS-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-ROOIBOS-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-ROOIBOS-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "prince-mixture-tea",
+      "product_title": "Prince Mixture Tea",
+      "product_subtitle": "",
+      "product_description": "Gold winner in Blas na hEireann / Irish Food Awards in 2025 in the Herbal and Fruit Tea Category. A delicious blend of chamomile, hibiscus, rose petals and rose hip. This gold winner offers powerful antioxidants, boosts immunity with high Vitamin C, reduces inflammation (especially joint pain), aids digestion, promotes relaxation (lowering stress/anxiety), and supports skin health by improving hydration and collagen. The floral aroma calms the mind, while compounds like polyphenols and flavonoids fight free radicals, helping protect against chronic diseases",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-PRINCE-MIX-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-PRINCE-MIX-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-PRINCE-MIX-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "sage-tea",
+      "product_title": "Sage Tea",
+      "product_subtitle": "",
+      "product_description": "Sage tea offers a delicate, sweet flavour that has earthy notes. It has a fragrant aroma and lends a warming feeling. It is full of antioxidants and anti-inflammatory compounds and helps to promote skin, oral, and brain health. Benefits attributed to: – Excellent for sore throats, coughs and colds – Strengthens the nervous system – Boosts the memory – Sharpens the senses",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-SAGE-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-SAGE-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-SAGE-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "shepherds-tea",
+      "product_title": "Shepherd's Tea",
+      "product_subtitle": "",
+      "product_description": "Greek mountain Tea or Shephard's Tea has a beautiful earthy taste with a slight floral scent. It is made from a native Greek mountain herb known as sideritis. It helps to boost the immune system, fight flu symptoms and stress-related ailments such as chest infections, a foggy head, digestive complaints, fatigue and anxiety. Benefits attributed to: – Full of flavonoids, powerful antioxidants with anti-inflammatory and immune system benefits – Rich in natural antioxidants – Anti-microbial/ kills or inhibits the growth of micro organisms – Anti-inflammatory",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-SHEPHERDS-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-SHEPHERDS-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-SHEPHERDS-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "strawberry-kiwi-tea",
+      "product_title": "Strawberry Kiwi Tea",
+      "product_subtitle": "",
+      "product_description": "Awarded Gold at Blas na hEireann / Irish Food Awards in 2025. We received double gold in 2025 in the Herbal and Fruit Tea category. The Strawberry Kiwi tea was entered as a 'Cold Brew', simply make up a hot brew as normal (taste some if you want) and then let it go cold and serve it with ice and a mint leaf. Tasting sweet, tangy, and refreshing hot or iced. It is rich in antioxidants (Vitamin C, beta-carotene) for immunity and cell protection. Benefits attributed to: -Supports digestion -Boosts energy -Aids heart health (via lower cholesterol/blood pressure)",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-STRAWBERRY-KIWI-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-STRAWBERRY-KIWI-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-STRAWBERRY-KIWI-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "senna-tea",
+      "product_title": "Senna Tea",
+      "product_subtitle": "",
+      "product_description": "Senna tea can be slightly sweet, but it does also have bitter undertones. It can treat constipation, and may also help treat haemorrhoids that occur as a result of chronic constipation. It is also thought to have both anti-inflammatory and anti-parasitic properties. Benefits attributed to: – Helps with constipation and haemorrhoids – Aids with indigestion – Great for detoxing and weight loss – Helps with eczema and acne",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-SENNA-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-SENNA-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-SENNA-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "thyme-tea",
+      "product_title": "Thyme Tea",
+      "product_subtitle": "",
+      "product_description": "Thyme tea has a very earthy rich flavour with subtle mint undertones. The aroma of thyme is very subtle and rather dry. Unlike many other herbs and spices, it isn't particularly aromatic. It helps to stimulate the memory, ease headaches and muscle tension, soothe coughs, relieve fevers, and fight colds and infections. Benefits attributed to: – Lowers blood pressure – Boosts your immune system – Excellent for skin problems like acne and eczema – Promotes cognitive health",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-THYME-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-THYME-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-THYME-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "valerian-tea",
+      "product_title": "Valerian Tea",
+      "product_subtitle": "",
+      "product_description": "Valerian tea has a woody taste. The plant grows well in moist, grassy areas so the tea has an earthy quality that is distinctive. The longer you brew valerian tea, the more intense the taste will be. Benefits of drinking the tea include improved sleep, decreased stress, menstrual symptom relief, and even a reduction of menopausal symptoms. Benefits attributed to: – Naturally aids sleep – Calms anxiety – Lowers blood pressure – Eases menstrual cramps",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-VALERIAN-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-VALERIAN-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-VALERIAN-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "wild-cherry-tea",
+      "product_title": "Wild Cherry Tea",
+      "product_subtitle": "",
+      "product_description": "Gold winner in Blas na hEireann / Irish Food Awards in 2024 in the Herbal and Fruit Tea Category. A strong vibrant flavour of wild cherries. Smooth, aromatic, and naturally bright, it's a simple yet stunning infusion. It is packed with antioxidants, vitamins, and minerals that can help boost your immune system. Benefits attributed to: -assists respiratory health by soothing coughs (like bronchitis) and clearing mucus -acts as an expectorant and antitussive -it also supports digestion by calming upset stomachs -offers anti-inflammatory effects -has mild sedative properties, aiding relaxation",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Tea",
+      "variants": [
+        {
+          "variant_title": "50g",
+          "variant_sku": "TEA-WILD-CHERRY-50G",
+          "variant_price_eur": 875,
+          "variant_price_gbp": 750,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "50g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "100g",
+          "variant_sku": "TEA-WILD-CHERRY-100G",
+          "variant_price_eur": 1500,
+          "variant_price_gbp": 1290,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "100g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "250g",
+          "variant_sku": "TEA-WILD-CHERRY-250G",
+          "variant_price_eur": 3500,
+          "variant_price_gbp": 3000,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "250g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "lavender-essential-oil",
+      "product_title": "Lavender Essential Oil",
+      "product_subtitle": "",
+      "product_description": "A calming and therapeutic oil, Lavender has been used for centuries. Taking its name from the Latin Lavare, meaning to \"to wash\", Lavender possesses a clean, pure aroma.  Lavender oil is known for its potential benefits, including reducing anxiety and stress, improving sleep, and soothing skin irritations. It also possesses antibacterial, antifungal, anti-inflammatory, and antioxidant properties that can aid in wound healing, muscle pain relief, and skin issues like acne and hyperpigmentation.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-LAVENDER-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "peppermint-essential-oil",
+      "product_title": "Peppermint Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Today, peppermint is promoted for irritable bowel syndrome (IBS), indigestion, headaches, muscle tension, nausea, and other conditions.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-PEPPERMINT-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "frankincense-essential-oil",
+      "product_title": "Frankincense Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Pure frankincense essential oil. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-FRANKINCENSE-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "sandalwood-essential-oil",
+      "product_title": "Sandalwood Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Pure sandalwood essential oil. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-SANDALWOOD-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "cedarwood-essential-oil",
+      "product_title": "Cedarwood Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Pure cedarwood essential oil. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-CEDARWOOD-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "aniseed-essential-oil",
+      "product_title": "Aniseed Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Pure aniseed essential oil. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-ANISEED-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "citronella-essential-oil",
+      "product_title": "Citronella Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Pure citronella essential oil. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-CITRONELLA-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "eucalyptus-essential-oil",
+      "product_title": "Eucalyptus Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Pure eucalyptus essential oil. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-EUCALYPTUS-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "tea-tree-essential-oil",
+      "product_title": "Tea Tree Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Pure tea tree essential oil. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-TEA-TREE-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "rosemary-essential-oil",
+      "product_title": "Rosemary Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Pure rosemary essential oil. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-ROSEMARY-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "may-chang-essential-oil",
+      "product_title": "May Chang Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Pure May Chang essential oil. [Description to be added]",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-MAY-CHANG-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "bergamot-essential-oil",
+      "product_title": "Bergamot Essential Oil",
+      "product_subtitle": "",
+      "product_description": "Bergamot essential oil offers benefits for relaxation, stress reduction, and mood improvement through aromatherapy, as well as potential benefits for skin health, digestion, and immune support. Its ability to promote relaxation by lowering stress hormones like cortisol is well-documented, and it can help with skin issues like acne and inflammation due to its antibacterial and anti-inflammatory properties.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-BERGAMOT-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "natural-sea-sponge",
+      "product_title": "Natural Sea Sponge",
+      "product_subtitle": "",
+      "product_description": "Soft natural sea sponges offer pampering at bath time, helping to restore your skins natural radiance. They effectively and efficiently cleanse the skin, helping to remove dead skin cells and promoting gorgeous soft skin in minutes. Suitable for use on all skin types, particularly sensitive skins. A properly cared for sea sponge will last for many years, it is important to let them dry after each use. Free from bleach, petroleum and toxins and only contain natural enzymes. Benefits of the Natural Sea Sponge: – Sea Sponges are permeated with natural enzymes that inhibit the growth of mould, mildew and bacteria – Promotes softer, smoother skin after each use – A natural sponge will hold two to three times as much water as an artificial one – Natural Sponges are more resistant to acids",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 50,
+      "shipping_profile": "default",
+      "category": "Natural Sponges",
+      "variants": [
+        {
+          "variant_title": "Small",
+          "variant_sku": "SPONGE-SEA-SMALL",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "Small",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "Medium",
+          "variant_sku": "SPONGE-SEA-MEDIUM",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "Medium",
+          "manage_inventory": true,
+          "allow_backorder": false
+        },
+        {
+          "variant_title": "Large",
+          "variant_sku": "SPONGE-SEA-LARGE",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "Large",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "spartan-healing-oil",
+      "product_title": "Spartan Healing Oil",
+      "product_subtitle": "",
+      "product_description": "Spartan Healing Oil has been known throughout history as a wound healer and was applied to their bodies after battles by the Spartans and the Crusaders. Though the plant may be known today as an anti-depressant and sedative, it is historically more important as a healing herb and is mentioned as such by many ancient Greek authors such as Hippocrates (the founder of medicine) and Dioscurides. – Ideal for all therapeutic massages and relaxing – Helps in the treatment of arthritis and joint pains – Helps in the treatment of stomach pains, mild ulcers and gastroenteritis – Helps in the treatment of first degree burns - Helps in the treatment of all skin problems",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 10,
+      "shipping_profile": "fragile",
+      "category": "Spartan Oils",
+      "variants": [
+        {
+          "variant_title": "10g",
+          "variant_sku": "OIL-SPARTAN-HEALING-10G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "10g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "shilajit-30-gram",
+      "product_title": "Shilajit 30 Gram",
+      "product_subtitle": "",
+      "product_description": "Shilajit is a natural substance found in the Himalayas, formed for centuries by the gradual decomposition of certain plants by the action of microorganisms. It is a potent and very safe dietary supplement, restoring the energetic balance and potentially able to prevent several diseases. Nature's Elixir's shilajit is gold grade, it comes from 17,000 + feet and is sun dried. It is the best on the market. It contains 85+ ionic minerals and Fulvic and Humic acid (the two most important acids for the body). Used by Olympic athletes, astronauts and Hollywood actors. • Rejuvenates the skin and all cells. It is anti- aging for the brain and body. • Improves mood, reduces anxiety, balances emotions and brain function– an elite adaptogen. • Improves energy naturally (no caffeine) in the short and long term. • De-Tox effectively – shilajit binds to toxins and heavy metals (that cause heart disease, thyroid problems, dementia) and removes them from the blood stream. It nourishes your body back to health if you have toxins backed up or mineral deficiencies. • Very effective testosterone booster (nature's Viagra). Enhances libido in men and women. • Lose weight, improve workouts and increase stamina. • Enhances the absorption of vitamins and other supplements. • Improves sleep, immunity system, digestion and the gut. • Many other benefits including arthritis, rheumatism, osteoporosis and liver function. • Some people take shilajit to help relieve altitude sickness and boost their sperm count. • Slow Alzheimer's Progression. Shilajit contains an antioxidant known as fulvic acid. A 2012 study found that fulvic acid in shilajit may help block the buildup of tau—a type of protein.Tau is considered a key marker of Alzheimer's disease and similar diseases.  • Lower Cholesterol and triglycerides significantly. • Boost Collagen Synthesis. Collagen is an abundant protein in the body that is a major component of bone, skin, muscles, tendons, and cartilage. Collagen synthesis is important for maintaining healthy skin, joints, and muscles as you age because your body's natural production gradually declines. • Maintain Bone Health. Bone loss is a significant concern in menopausal women. Up to 20% of bone loss can occur during perimenopause and menopause, and approximately one in 10 women over the age of 60 are affected by osteoporosis worldwide. • Prevent Iron-Deficiency Anemia. Shilajit may prevent iron-deficiency anemia because it naturally contains iron.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 30,
+      "shipping_profile": "default",
+      "category": "Wellness Supplements",
+      "variants": [
+        {
+          "variant_title": "30g",
+          "variant_sku": "SUPP-SHILAJIT-30G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "30g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "shilajit-15-gram",
+      "product_title": "Shilajit 15 Gram",
+      "product_subtitle": "",
+      "product_description": "Shilajit is a natural substance found in the Himalayas, formed for centuries by the gradual decomposition of certain plants by the action of microorganisms. It is a potent and very safe dietary supplement, restoring the energetic balance and potentially able to prevent several diseases. Nature's Elixir's shilajit is gold grade, it comes from 17,000 + feet and is sun dried. It is the best on the market. It contains 85+ ionic minerals and Fulvic and Humic acid (the two most important acids for the body). Used by Olympic athletes, astronauts and Hollywood actors. • Rejuvenates the skin and all cells. It is anti- aging for the brain and body. • Improves mood, reduces anxiety, balances emotions and brain function– an elite adaptogen. • Improves energy naturally (no caffeine) in the short and long term. • De-Tox effectively – shilajit binds to toxins and heavy metals (that cause heart disease, thyroid problems, dementia) and removes them from the blood stream. It nourishes your body back to health if you have toxins backed up or mineral deficiencies. • Very effective testosterone booster (nature's Viagra). Enhances libido in men and women. • Lose weight, improve workouts and increase stamina. • Enhances the absorption of vitamins and other supplements. • Improves sleep, immunity system, digestion and the gut. • Many other benefits including arthritis, rheumatism, osteoporosis and liver function. • Some people take shilajit to help relieve altitude sickness and boost their sperm count. • Slow Alzheimer's Progression. Shilajit contains an antioxidant known as fulvic acid. A 2012 study found that fulvic acid in shilajit may help block the buildup of tau—a type of protein.Tau is considered a key marker of Alzheimer's disease and similar diseases.  • Lower Cholesterol and triglycerides significantly. • Boost Collagen Synthesis. Collagen is an abundant protein in the body that is a major component of bone, skin, muscles, tendons, and cartilage. Collagen synthesis is important for maintaining healthy skin, joints, and muscles as you age because your body's natural production gradually declines. • Maintain Bone Health. Bone loss is a significant concern in menopausal women. Up to 20% of bone loss can occur during perimenopause and menopause, and approximately one in 10 women over the age of 60 are affected by osteoporosis worldwide. • Prevent Iron-Deficiency Anemia. Shilajit may prevent iron-deficiency anemia because it naturally contains iron.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 15,
+      "shipping_profile": "default",
+      "category": "Wellness Supplements",
+      "variants": [
+        {
+          "variant_title": "15g",
+          "variant_sku": "SUPP-SHILAJIT-15G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "15g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "ashwagandha-30-gram",
+      "product_title": "Ashwagandha 30 Gram",
+      "product_subtitle": "",
+      "product_description": "Ashwagandha began to be used thousands of years ago and forms part of what's known as Ayurveda, or traditional Indian medicine.The root of this plant, a small shrub with small leaves and orange-red fruits shaped like berries, has very well-known adaptogenic properties. But it can also exert many more positive actions. There are many well-known benefits of using ashwagandha: It has a general rejuvenating effect and helps to maintain skin health. It protects skin tissue from damage and protects overall health through its antioxidant activity.  It helps to maintain physical and mental capacity when we feel weak, exhausted, tired or lose concentration. It offers support in times of mental stress, nervousness and anxiety. It supports optimum relaxation, emotional balance and overall wellbeing. It also helps calm your mind and enhance physical wellbeing.  It helps maintain energy levels and increase muscle mass and weight because it helps develop muscle. It helps maintain feelings of physical and mental energy and vitality and helps maintain the body's vitality. It is also considered an energy tonic and stimulator for the body.  It helps keep your heart and cardiovascular system, and respiratory system healthy. It supports female reproductive organ health and helps maintain strength during pregnancy. It supports male sexual function and helps maintain sperm mobility.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 30,
+      "shipping_profile": "default",
+      "category": "Wellness Supplements",
+      "variants": [
+        {
+          "variant_title": "30g",
+          "variant_sku": "SUPP-ASHWAGANDHA-30G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "30g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "moringa-30-gram",
+      "product_title": "Moringa 30 Gram",
+      "product_subtitle": "",
+      "product_description": "Moringa offers benefits including being a nutritious food source rich in vitamins, minerals, and protein, and contains all nine essential amino acids. It has potent anti-inflammatory and antioxidant properties that helps to manage blood sugar and cholesterol levels, boost the immune system, and protects organs like the liver. Menopausal symptom relief: Some research shows it may alleviate menopausal symptoms like hot flashes.  Male reproductive health: Early research suggests potential benefits for prostate health, erectile dysfunction, and male fertility.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 30,
+      "shipping_profile": "default",
+      "category": "Wellness Supplements",
+      "variants": [
+        {
+          "variant_title": "30g",
+          "variant_sku": "SUPP-MORINGA-30G",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "30g",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "gok-shura",
+      "product_title": "Gok Shura",
+      "product_subtitle": "",
+      "product_description": "Gokshura (Tribulus terrestris) is a popular medicinal plant in traditional Ayurvedic and Chinese medicine. It has antioxidant properties, improve sexual function and aid erectile dysfunction, increase testosterone, boost your libido, reduce blood sugar levels, benefit women's health, reduce blood pressure, reduce inflammation, treat kidney stones, and provide pain relief.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 30,
+      "shipping_profile": "default",
+      "category": "Wellness Supplements",
+      "variants": [
+        {
+          "variant_title": "One Size",
+          "variant_sku": "SUPP-GOK-SHURA",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "One Size",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "tea-strainer",
+      "product_title": "Tea Strainer",
+      "product_subtitle": "",
+      "product_description": "This classic stainless steel tea ball is a 2.1 inch premium mesh tea infuser/strainer used for loose tea leaves. The chain and hook make it easy to put the tea ball into the cup so that the tea leaf is fully soaked. The hook is super easy to hang on your cup, so no need to worry about going fishing for the ball!",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 50,
+      "shipping_profile": "default",
+      "category": "Other Products",
+      "variants": [
+        {
+          "variant_title": "One Size",
+          "variant_sku": "ACC-TEA-STRAINER",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "One Size",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "aleppo-soap",
+      "product_title": "Aleppo Soap",
+      "product_subtitle": "",
+      "product_description": "Aleppo soap is the world's oldest soap and a pure, natural product made from fine olive oil, laurel oil, water and lye. It is palm oil free. This traditional formula contains no colours, chemicals or perfume. Compared to the soaps of today, Aleppo soap supports your skin's own balance, making it suitable for all skin types. You can use Aleppo Soap as a substitute for body-wash and shampoo, to wash your hair or beard. Benefits Attributed to: – The laurel oil and olive oil content keep the skin moisturized. – Restores the pH balance in the skin. – The anti-inflammatory properties help with skin irritation, making it perfect for sensitive skin.",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Soap Products",
+      "variants": [
+        {
+          "variant_title": "One Size",
+          "variant_sku": "SOAP-ALEPPO",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "One Size",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    },
+    {
+      "product_handle": "dead-sea-black-mud-soap",
+      "product_title": "Dead Sea Black Mud Soap",
+      "product_subtitle": "",
+      "product_description": "The Dead Sea is a salt water lake in the Middle East, located between Israel and Jordan. The geographical features of the Dead Sea makes the surrounding silt and mud rich with a unique combination of minerals like magnesium, sodium, and potassium. It is made according to an old family recipe using olive, coconut and vegetable oil. It is free of detergents and animal fat and filled with the unique minerals of the Dead sea. Pure and un-perfumed, this soap removes dead skin cells and impurities. Benefits attributed to: – Hydrating and firming properties – Soothes itchiness and inflammation – Reduces the appearance of pores – Smoothes the appearance of fine lines and wrinkles",
+      "product_status": "published",
+      "product_thumbnail": "",
+      "product_weight": 100,
+      "shipping_profile": "default",
+      "category": "Soap Products",
+      "variants": [
+        {
+          "variant_title": "One Size",
+          "variant_sku": "SOAP-DEAD-SEA-MUD",
+          "variant_price_eur": 0,
+          "variant_price_gbp": 0,
+          "variant_option_1_name": "Size",
+          "variant_option_1_value": "One Size",
+          "manage_inventory": true,
+          "allow_backorder": false
+        }
+      ],
+      "images": []
+    }
+  ],
+  "metadata": {
+    "total_products": 54,
+    "categories": {
+      "Tea": 32,
+      "Spartan Oils": 13,
+      "Natural Sponges": 1,
+      "Wellness Supplements": 5,
+      "Other Products": 1,
+      "Soap Products": 2
+    },
+    "notes": {
+      "pricing": "All prices are set to 0 and need to be filled in with actual EUR (cents) and GBP (pence) values",
+      "descriptions": "Placeholder descriptions need to be replaced with actual product descriptions",
+      "images": "Image URLs need to be added for each product",
+      "variants": "Variant options may need adjustment based on actual product offerings",
+      "shipping_profiles": {
+        "default": "Used for Tea, Sponges, Supplements, Soaps, Accessories",
+        "fragile": "Used for Essential Oils (glass containers)"
+      }
+    }
+  }
+}

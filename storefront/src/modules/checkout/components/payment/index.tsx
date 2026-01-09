@@ -14,6 +14,7 @@ import PaymentContainer from "@modules/checkout/components/payment-container"
 import { isStripe as isStripeFunc, paymentInfoMap } from "@lib/constants"
 import { StripeContext } from "@modules/checkout/components/payment-wrapper"
 import { initiatePaymentSession } from "@lib/data/cart"
+import PaymentRequestButton from "@modules/checkout/components/payment-wrapper/payment-request-button"
 
 const Payment = ({
   cart,
@@ -51,6 +52,7 @@ const Payment = ({
 
   const useOptions: StripeCardElementOptions = useMemo(() => {
     return {
+      hidePostalCode: true,
       style: {
         base: {
           fontFamily: "Inter, sans-serif",
@@ -166,6 +168,25 @@ const Payment = ({
               </RadioGroup>
               {isStripe && stripeReady && (
                 <div className="mt-5 transition-all duration-150 ease-in-out">
+                  {/* Apple Pay / Google Pay Button */}
+                  <PaymentRequestButton
+                    cart={cart}
+                    onError={(err) => setError(err)}
+                    onSuccess={() => {
+                      // placeOrder() handles the redirect, so this is just a callback
+                      // The redirect happens in placeOrder() server action
+                    }}
+                  />
+                  
+                  <div className="relative my-4">
+                    <div className="absolute inset-0 flex items-center">
+                      <div className="w-full border-t border-ui-border-base"></div>
+                    </div>
+                    <div className="relative flex justify-center text-sm">
+                      <span className="px-2 bg-white text-ui-fg-subtle">Or</span>
+                    </div>
+                  </div>
+
                   <Text className="txt-medium-plus text-ui-fg-base mb-1">
                     Enter your card details:
                   </Text>
