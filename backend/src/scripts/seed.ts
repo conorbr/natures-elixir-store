@@ -318,9 +318,8 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
   const salesChannelModuleService = container.resolve(Modules.SALES_CHANNEL);
   const storeModuleService = container.resolve(Modules.STORE);
 
-  // Nature's Elixir: Europe and UK store
-  const europeCountries = ["ie", "de", "dk", "se", "fr", "es", "it"]; // Europe (EUR)
-  const ukCountries = ["gb"]; // United Kingdom (GBP)
+  // Nature's Elixir: Single Europe region (includes UK)
+  const europeCountries = ["ie", "gb", "de", "dk", "se", "fr", "es", "it"]; // Europe (EUR) - includes UK
 
   // Check if seed has already run by checking if "Europe" region exists
   logger.info("Checking if seed has already run...");
@@ -390,7 +389,7 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
     defaultSalesChannel = salesChannelResult;
   }
 
-  // Nature's Elixir: EUR primary currency, GBP secondary
+  // Nature's Elixir: EUR primary currency only (UK included in Europe region)
   await updateStoreCurrencies(container).run({
     input: {
       store_id: store.id,
@@ -398,9 +397,6 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
         {
           currency_code: "eur",
           is_default: true,
-        },
-        {
-          currency_code: "gbp",
         },
       ],
     },
@@ -416,7 +412,7 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
     },
   });
   logger.info("Seeding region data...");
-  // Nature's Elixir: Europe region (EUR) and UK region (GBP) with Stripe payment
+  // Nature's Elixir: Single Europe region (EUR) including UK with Stripe payment
   // Regions should have been deleted by resetDatabase, so we create new ones
   const { result: regionResult } = await createRegionsWorkflow(container).run({
     input: {
@@ -427,24 +423,16 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
           countries: europeCountries,
           payment_providers: ["pp_stripe_stripe"],
         },
-        {
-          name: "United Kingdom",
-          currency_code: "gbp",
-          countries: ukCountries,
-          payment_providers: ["pp_stripe_stripe"],
-        },
       ],
     },
   });
   const europeRegion = regionResult.find((r) => r.name === "Europe")!;
-  const ukRegion = regionResult.find((r) => r.name === "United Kingdom")!;
   logger.info("Finished seeding regions.");
 
   logger.info("Seeding tax regions...");
-  // Create tax regions for all countries
-  const allCountries = [...europeCountries, ...ukCountries];
+  // Create tax regions for all countries in Europe region (including UK)
   await createTaxRegionsWorkflow(container).run({
-    input: allCountries.map((country_code) => ({
+    input: europeCountries.map((country_code) => ({
       country_code,
       provider_id: "tp_system",
     })),
@@ -655,50 +643,50 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
         price_type: "flat",
         provider_id: "manual_manual",
         service_zone_id: irelandZone.id,
-        shipping_profile_id: shippingProfile.id,
+          shipping_profile_id: shippingProfile.id,
         type: {
           label: "Free",
           description: "Free shipping for orders over €45.00",
           code: "free",
-        },
-        prices: [
-          {
-            currency_code: "eur",
+              },
+              prices: [
+                {
+                  currency_code: "eur",
             amount: 0, // €0.00 - free shipping when condition is met
             rules: [
-              {
+                {
                 attribute: "item_total",
                 operator: "gte",
                 value: 45, // €45.00 (major units in MedusaJS 2.0)
-              },
-            ],
-          },
-          {
+                },
+              ],
+            },
+            {
             region_id: europeRegion.id,
             amount: 0,
             rules: [
-              {
+                {
                 attribute: "item_total",
                 operator: "gte",
                 value: 45, // €45.00 (major units in MedusaJS 2.0)
-              },
-            ],
-          },
+                },
+              ],
+            },
         ],
         rules: [
-          {
+                {
             attribute: "enabled_in_store",
             value: "true",
             operator: "eq",
-          },
-          {
+                },
+                {
             attribute: "is_return",
             value: "false",
             operator: "eq",
                 },
               ],
             },
-      // UK shipping options (GBP)
+      // UK shipping options (EUR - UK included in Europe region)
       {
         name: "Standard Shipping (UK)",
         price_type: "flat",
@@ -712,21 +700,21 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
               },
               prices: [
                 {
-            currency_code: "gbp",
-            amount: 5, // £5.00 (major units in MedusaJS 2.0)
-          },
-          {
-            region_id: ukRegion.id,
+                  currency_code: "eur",
+            amount: 5, // €5.00 (major units in MedusaJS 2.0)
+            },
+            {
+            region_id: europeRegion.id,
             amount: 5,
-          },
+              },
         ],
         rules: [
-          {
+                {
             attribute: "enabled_in_store",
             value: "true",
             operator: "eq",
-          },
-          {
+                },
+                {
             attribute: "is_return",
             value: "false",
             operator: "eq",
@@ -746,11 +734,11 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
               },
               prices: [
                 {
-            currency_code: "gbp",
-            amount: 10, // £10.00 (major units in MedusaJS 2.0)
-          },
-          {
-            region_id: ukRegion.id,
+                  currency_code: "eur",
+            amount: 10, // €10.00 (major units in MedusaJS 2.0)
+            },
+            {
+            region_id: europeRegion.id,
             amount: 10,
           },
         ],
@@ -759,8 +747,8 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
             attribute: "enabled_in_store",
             value: "true",
             operator: "eq",
-          },
-          {
+                },
+                {
             attribute: "is_return",
             value: "false",
             operator: "eq",
@@ -775,39 +763,39 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
         shipping_profile_id: shippingProfile.id,
         type: {
           label: "Free",
-          description: "Free shipping for orders over £45.00",
+          description: "Free shipping for orders over €45.00",
           code: "free",
               },
               prices: [
                 {
-            currency_code: "gbp",
-            amount: 0, // £0.00 - free shipping when condition is met
+                  currency_code: "eur",
+            amount: 0, // €0.00 - free shipping when condition is met
             rules: [
-              {
+                {
                 attribute: "item_total",
                 operator: "gte",
-                value: 45, // £45.00 (major units in MedusaJS 2.0)
+                value: 45, // €45.00 (major units in MedusaJS 2.0)
                 },
               ],
             },
           {
-            region_id: ukRegion.id,
+            region_id: europeRegion.id,
             amount: 0,
             rules: [
               {
                 attribute: "item_total",
                 operator: "gte",
-                value: 45, // £45.00 (major units in MedusaJS 2.0)
+                value: 45, // €45.00 (major units in MedusaJS 2.0)
               },
             ],
-          },
-        ],
+            },
+          ],
         rules: [
-          {
+            {
             attribute: "enabled_in_store",
             value: "true",
             operator: "eq",
-          },
+              },
           {
             attribute: "is_return",
             value: "false",
@@ -831,19 +819,19 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
                 {
                   currency_code: "eur",
             amount: 5, // €5.00 (major units in MedusaJS 2.0)
-          },
-          {
+            },
+            {
             region_id: europeRegion.id,
             amount: 5,
-          },
+              },
         ],
         rules: [
-          {
+                {
             attribute: "enabled_in_store",
             value: "true",
             operator: "eq",
-          },
-          {
+                },
+                {
             attribute: "is_return",
             value: "false",
             operator: "eq",
@@ -865,19 +853,19 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
                 {
                   currency_code: "eur",
             amount: 10, // €10.00 (major units in MedusaJS 2.0)
-          },
-          {
+            },
+            {
             region_id: europeRegion.id,
                   amount: 10,
-          },
-        ],
+                },
+              ],
         rules: [
-          {
+                {
             attribute: "enabled_in_store",
             value: "true",
             operator: "eq",
-          },
-          {
+                },
+                {
             attribute: "is_return",
             value: "false",
             operator: "eq",
@@ -911,7 +899,7 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
             region_id: europeRegion.id,
             amount: 0,
             rules: [
-              {
+                {
                 attribute: "item_total",
                 operator: "gte",
                 value: 45, // €45.00 (major units in MedusaJS 2.0)
@@ -920,17 +908,17 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
             },
           ],
         rules: [
-          {
+            {
             attribute: "enabled_in_store",
             value: "true",
             operator: "eq",
-          },
-          {
+        },
+        {
             attribute: "is_return",
             value: "false",
             operator: "eq",
           },
-        ],
+          ],
       },
     ],
   });
@@ -950,7 +938,7 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
   ).run({
     input: {
       api_keys: [
-        {
+                {
           title: "Webshop",
           type: "publishable",
           created_by: "",
@@ -964,7 +952,7 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
     input: {
       id: publishableApiKey.id,
       add: [defaultSalesChannel[0].id],
-    },
+              },
   });
   logger.info("Finished seeding publishable API key data.");
 
@@ -987,15 +975,15 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
           handle: "essential-oils",
           is_active: true,
           is_internal: false,
-        },
-        {
+                },
+                {
           name: "Natural Sponges",
           description: "Organic and natural sponge products",
           handle: "natural-sponges",
           is_active: true,
           is_internal: false,
-        },
-        {
+            },
+            {
           name: "Wellness Supplements",
           description: "Natural wellness and health supplements",
           handle: "wellness-supplements",
@@ -1008,8 +996,8 @@ export default async function seedNaturesElixir({ container }: ExecArgs) {
           handle: "soap-products",
           is_active: true,
           is_internal: false,
-        },
-        {
+                },
+                {
           name: "Accessories",
           description: "Tea accessories and related products",
           handle: "accessories",
