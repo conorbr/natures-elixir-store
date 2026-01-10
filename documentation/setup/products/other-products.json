@@ -1,5 +1,5 @@
 {
-  "description": "Product JSON template for Nature's Elixir. This structure can be used to generate the CSV import file. All prices are in smallest currency unit (EUR in cents, GBP in pence).",
+  "description": "Product JSON template for Nature's Elixir. This structure can be used to generate the CSV import file. All prices are in major currency units (EUR in euros) as required by MedusaJS 2.0. UK is included in the Europe region with EUR currency.",
   "csv_mapping": {
     "product_handle": "Product Handle",
     "product_title": "Product Title",
@@ -8,12 +8,11 @@
     "product_status": "Product Status",
     "product_thumbnail": "Product Thumbnail",
     "product_weight": "Product Weight",
-    "shipping_profile": "Shipping Profile Id (default or fragile)",
-    "category": "Product Collection Id (Tea, Spartan Oils, Natural Sponges, etc.)",
+    "shipping_profile": "Shipping Profile Id (default)",
+    "category": "Product Collection Id (Tea, Essential Oils, Natural Sponges, etc.)",
     "variant_title": "Variant Title",
     "variant_sku": "Variant SKU",
-    "variant_price_eur": "Variant Price EUR (in cents)",
-    "variant_price_gbp": "Variant Price GBP (in pence) - Note: CSV template shows USD, but we use GBP",
+    "variant_price_eur": "Variant Price EUR (in euros, major units)",
     "variant_option_1_name": "Variant Option 1 Name",
     "variant_option_1_value": "Variant Option 1 Value",
     "manage_inventory": "Variant Manage Inventory",
@@ -32,32 +31,11 @@
       "category": "Natural Sponges",
       "variants": [
         {
-          "variant_title": "Small",
-          "variant_sku": "SPONGE-SEA-SMALL",
-          "variant_price_eur": 0,
-          "variant_price_gbp": 0,
+          "variant_title": "Standard",
+          "variant_sku": "SPONGE-SEA-STANDARD",
+          "variant_price_eur": 14,
           "variant_option_1_name": "Size",
-          "variant_option_1_value": "Small",
-          "manage_inventory": false,
-          "allow_backorder": true
-        },
-        {
-          "variant_title": "Medium",
-          "variant_sku": "SPONGE-SEA-MEDIUM",
-          "variant_price_eur": 0,
-          "variant_price_gbp": 0,
-          "variant_option_1_name": "Size",
-          "variant_option_1_value": "Medium",
-          "manage_inventory": false,
-          "allow_backorder": true
-        },
-        {
-          "variant_title": "Large",
-          "variant_sku": "SPONGE-SEA-LARGE",
-          "variant_price_eur": 0,
-          "variant_price_gbp": 0,
-          "variant_option_1_name": "Size",
-          "variant_option_1_value": "Large",
+          "variant_option_1_value": "Standard",
           "manage_inventory": false,
           "allow_backorder": true
         }
@@ -78,8 +56,7 @@
         {
           "variant_title": "15g",
           "variant_sku": "SUPP-SHILAJIT-15G",
-          "variant_price_eur": 0,
-          "variant_price_gbp": 0,
+          "variant_price_eur": 25,
           "variant_option_1_name": "Size",
           "variant_option_1_value": "15g",
           "manage_inventory": false,
@@ -88,8 +65,7 @@
         {
           "variant_title": "30g",
           "variant_sku": "SUPP-SHILAJIT-30G",
-          "variant_price_eur": 0,
-          "variant_price_gbp": 0,
+          "variant_price_eur": 45,
           "variant_option_1_name": "Size",
           "variant_option_1_value": "30g",
           "manage_inventory": false,
@@ -112,8 +88,7 @@
         {
           "variant_title": "30g",
           "variant_sku": "SUPP-ASHWAGANDHA-30G",
-          "variant_price_eur": 0,
-          "variant_price_gbp": 0,
+          "variant_price_eur": 26,
           "variant_option_1_name": "Size",
           "variant_option_1_value": "30g",
           "manage_inventory": false,
@@ -136,8 +111,7 @@
         {
           "variant_title": "30g",
           "variant_sku": "SUPP-MORINGA-30G",
-          "variant_price_eur": 0,
-          "variant_price_gbp": 0,
+          "variant_price_eur": 26,
           "variant_option_1_name": "Size",
           "variant_option_1_value": "30g",
           "manage_inventory": false,
@@ -160,8 +134,7 @@
         {
           "variant_title": "One Size",
           "variant_sku": "SUPP-GOK-SHURA",
-          "variant_price_eur": 0,
-          "variant_price_gbp": 0,
+          "variant_price_eur": 26,
           "variant_option_1_name": "Size",
           "variant_option_1_value": "One Size",
           "manage_inventory": false,
@@ -179,13 +152,12 @@
       "product_thumbnail": "",
       "product_weight": 50,
       "shipping_profile": "default",
-      "category": "Other Products",
+      "category": "Accessories",
       "variants": [
         {
           "variant_title": "One Size",
           "variant_sku": "ACC-TEA-STRAINER",
-          "variant_price_eur": 0,
-          "variant_price_gbp": 0,
+          "variant_price_eur": 3.0,
           "variant_option_1_name": "Size",
           "variant_option_1_value": "One Size",
           "manage_inventory": false,
@@ -208,8 +180,7 @@
         {
           "variant_title": "One Size",
           "variant_sku": "SOAP-ALEPPO",
-          "variant_price_eur": 0,
-          "variant_price_gbp": 0,
+          "variant_price_eur": 8,
           "variant_option_1_name": "Size",
           "variant_option_1_value": "One Size",
           "manage_inventory": false,
@@ -232,8 +203,7 @@
         {
           "variant_title": "One Size",
           "variant_sku": "SOAP-DEAD-SEA-MUD",
-          "variant_price_eur": 0,
-          "variant_price_gbp": 0,
+          "variant_price_eur": 8,
           "variant_option_1_name": "Size",
           "variant_option_1_value": "One Size",
           "manage_inventory": false,
@@ -248,7 +218,7 @@
     "categories": {
       "Natural Sponges": 1,
       "Wellness Supplements": 4,
-      "Other Products": 1,
+      "Accessories": 1,
       "Soap Products": 2
     }
   }

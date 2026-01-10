@@ -20,7 +20,12 @@ export async function retrieveCart() {
   return await sdk.store.cart
     .retrieve(cartId, {}, { next: { tags: ["cart"] }, ...(await getAuthHeaders()) })
     .then(({ cart }) => cart)
-    .catch(() => {
+    .catch(async (error) => {
+      // If cart retrieval fails (e.g., region not found), clear the cart cookie
+      // This handles cases where the region was deleted/reset
+      if (error?.message?.includes('Region') || error?.message?.includes('not found')) {
+        await removeCartId()
+      }
       return null
     })
 }

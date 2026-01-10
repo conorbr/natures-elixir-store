@@ -1,6 +1,10 @@
 # MedusaJS Region Configuration Guide
 
-## Standard Approach: Separate Regions for Different Currencies
+## Current Approach: Single Region (Europe with EUR)
+
+**Note**: Nature's Elixir uses a **single Europe region** that includes the UK with EUR currency. This simplifies the initial setup and can be expanded later if a separate UK region with GBP is needed.
+
+## Alternative Approach: Separate Regions for Different Currencies
 
 ### Key Principle
 

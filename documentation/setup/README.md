@@ -11,14 +11,13 @@ We're using a **Seed Script + CSV Import** approach:
 
 ## Setup Documentation
 
-### Getting Started
+### Core Setup Guides
 
 1. **[Seed Script Requirements](./seed-script-requirements.md)** ⭐ **SEED SCRIPT GUIDE**
 
    - Complete requirements for seed script implementation
    - All store configuration values and settings
    - What to include and what to exclude (products via CSV)
-   - Use this to build the seed script
 
 2. **[Store Configuration Plan](./store-configuration-plan.md)** ⭐ **REFERENCE GUIDE**
 
@@ -27,27 +26,48 @@ We're using a **Seed Script + CSV Import** approach:
    - Useful for understanding the full setup
 
 3. **[Product JSON Files](./products/)** ⭐ **PRODUCT DATA**
-
    - `tea-products.json` - All 32 tea products with variants
-   - `essential-oils.json` - All 12 essential oil products
+   - `essential-oils.json` - All 13 essential oil products
    - `other-products.json` - Supplements, sponges, soaps, accessories
    - Use these to generate CSV for product import
 
-4. **[Region Configuration Guide](./region-configuration-guide.md)**
+### Configuration References
 
-   - Explains why UK is a separate region from Europe
-   - Region structure and currency setup
+4. **[Admin API Reference](./admin-api-reference.md)**
+
+   - Admin API authentication and usage
+   - Common API endpoints and examples
 
 5. **[Admin Dashboard Shipping Guide](./admin-dashboard-shipping-guide.md)** ⭐ **SHIPPING SETUP**
 
    - Step-by-step guide for configuring shipping in admin dashboard
    - How to create shipping options and set pricing
-   - Troubleshooting tips
 
-6. **[Medusa Configuration](./medusa-configuration.md)**
+6. **[Apple Pay & Google Pay Setup](./apple-pay-google-pay-setup.md)**
+
+   - Payment method configuration
+   - Stripe integration setup
+
+7. **[Region Configuration Guide](./region-configuration-guide.md)**
+
+   - Explains why UK is a separate region from Europe
+   - Region structure and currency setup
+
+8. **[Medusa Configuration](./medusa-configuration.md)**
+
    - MedusaJS 2.0 specific configurations
    - Environment variables
    - Module configurations
+
+9. **[Seed Script Deployment Trigger](./seed-script-deployment-trigger.md)**
+   - How the seed script is triggered on deployment
+   - Railway deployment context
+
+### Product Import Tools
+
+10. **[CSV Generator](./generate-product-csv.js)** & **[README](./README-csv-generator.md)**
+    - Script to generate product import CSV from JSON files
+    - Usage instructions and requirements
 
 ## Setup Workflow
 
@@ -100,6 +120,7 @@ Refer to [Seed Script Requirements](./seed-script-requirements.md) for detailed 
 - **Backend Config**: `backend/medusa-config.js`
 - **Environment Variables**: `backend/src/lib/constants.ts`
 - **Admin Dashboard**: `http://localhost:9000/app` (or Railway URL)
+- **Seed Script**: `backend/src/scripts/seed.ts`
 
 ## Notes
 

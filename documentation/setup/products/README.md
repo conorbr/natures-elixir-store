@@ -12,7 +12,7 @@ Contains all 32 tea products with their variants, pricing, and descriptions.
 
 - All tea varieties (Apricot Delight, Breakfast, Cacao, Calendula, Chamomile, etc.)
 - Variants: 50g, 100g, 250g
-- Pricing: EUR and GBP configured
+- Pricing: EUR only (UK included in Europe region)
 
 ### `essential-oils.json`
 
@@ -47,11 +47,12 @@ These JSON files can be used to:
 
 ## Notes
 
-- All prices are in smallest currency unit (EUR in cents, GBP in pence)
+- All prices are in major currency units (EUR in euros) as required by MedusaJS 2.0
+- UK is included in the Europe region with EUR currency
 - Tea products have complete pricing (50g: €8.75, 100g: €15.00, 250g: €35.00)
-- Essential oils and other products have pricing set to 0 (to be configured)
+- Essential oils: €9.99 each (10g), Spartan Healing Oil: €22.00 (10g)
+- Other products: Prices set (see individual product files)
 - Descriptions have been pulled from the Shopify CSV where available
-- Products without descriptions in the CSV still have placeholder text
 
 ## Inventory Management
 

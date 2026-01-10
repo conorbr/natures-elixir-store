@@ -24,7 +24,7 @@ The seed script will:
 - **Primary Currency**: EUR (Euro) - `is_default: true`
 - **Supported Currencies**:
   - EUR (Euro) - default
-  - GBP (British Pound Sterling)
+  - **Note**: UK is included in the Europe region with EUR currency. GBP can be added later if needed.
 
 ### Sales Channels
 
@@ -35,12 +35,13 @@ The seed script will:
 
 ## 2. Region Configuration
 
-### Region 1: Europe (EUR)
+### Single Region: Europe (EUR)
 
 - **Name**: "Europe"
 - **Currency Code**: `eur`
 - **Countries**:
   - `ie` - Ireland
+  - `gb` - United Kingdom
   - `de` - Germany
   - `dk` - Denmark
   - `se` - Sweden
@@ -50,24 +51,11 @@ The seed script will:
 - **Payment Providers**: `["pp_stripe_stripe"]`
 - **Tax Provider**: `tp_system` (for all countries)
 
-### Region 2: United Kingdom (GBP)
-
-- **Name**: "United Kingdom"
-- **Currency Code**: `gbp`
-- **Countries**:
-  - `gb` - United Kingdom
-- **Payment Providers**: `["pp_stripe_stripe"]`
-- **Tax Provider**: `tp_system`
-
-**Note**: UK is separate from Europe due to:
-
-- Different currency (GBP vs EUR)
-- Post-Brexit regulations
-- Different shipping requirements
+**Note**: UK is included in the Europe region with EUR currency. This simplifies the initial setup and can be expanded later if separate UK region with GBP is needed.
 
 ## 3. Tax Regions
 
-Create tax regions for all countries in both regions:
+Create tax regions for all countries in the Europe region:
 
 - `ie` - Ireland → `tp_system`
 - `gb` - United Kingdom → `tp_system`
@@ -117,7 +105,7 @@ Create tax regions for all countries in both regions:
 - **Countries**: `["gb"]`
 - **Fulfillment Set**: Linked to Dublin stock location
 
-#### Zone 3: Europe
+#### Zone 3: Europe (Other Countries)
 
 - **Name**: "Europe"
 - **Countries**: `["de", "dk", "se", "fr", "es", "it"]`
@@ -173,8 +161,8 @@ Create tax regions for all countries in both regions:
 
 - **Name**: "Standard Shipping (UK)"
 - **Type**: `standard`
-- **Price**: `500` (£5.00 in pence)
-- **Currency**: `gbp`
+- **Price**: `500` (€5.00 in cents)
+- **Currency**: `eur`
 - **Zone**: United Kingdom
 - **Profile**: Default Shipping Profile
 - **Provider**: `manual_manual`
@@ -186,8 +174,8 @@ Create tax regions for all countries in both regions:
 
 - **Name**: "Express Shipping (UK)"
 - **Type**: `express`
-- **Price**: `1000` (£10.00 in pence)
-- **Currency**: `gbp`
+- **Price**: `1000` (€10.00 in cents)
+- **Currency**: `eur`
 - **Zone**: United Kingdom
 - **Profile**: Default Shipping Profile
 - **Provider**: `manual_manual`
@@ -195,16 +183,16 @@ Create tax regions for all countries in both regions:
   - `is_return`: false
   - Enabled in store: true
 
-**Free Shipping (UK - Orders Over £45)**
+**Free Shipping (UK - Orders Over €45)**
 
 - **Name**: "Free Shipping (UK)"
 - **Type**: `free`
-- **Price**: `0` (£0.00)
-- **Currency**: `gbp`
+- **Price**: `0` (€0.00)
+- **Currency**: `eur`
 - **Zone**: United Kingdom
 - **Profile**: Default Shipping Profile
 - **Provider**: `manual_manual`
-- **Condition**: Order subtotal ≥ `4500` (£45.00 in pence)
+- **Condition**: Order subtotal ≥ `4500` (€45.00 in cents)
 - **Rules**:
   - `is_return`: false
   - Enabled in store: true
@@ -262,10 +250,10 @@ Create tax regions for all countries in both regions:
 - **Configuration**:
   - API Key: `STRIPE_API_KEY` (from environment)
   - Webhook Secret: `STRIPE_WEBHOOK_SECRET` (from environment)
-- **Regions**: Both Europe and UK regions
+- **Regions**: Europe region (includes UK)
 - **Supported Methods**: Credit cards, debit cards, Apple Pay, Google Pay
 
-**Note**: Stripe configuration is handled via `medusa-config.js` and environment variables. The seed script should ensure Stripe is available in both regions.
+**Note**: Stripe configuration is handled via `medusa-config.js` and environment variables. The seed script should ensure Stripe is available in the Europe region.
 
 ## 7. Product Categories
 
@@ -391,11 +379,7 @@ Resources must be created in this order:
 - €10.00 = `1000`
 - €45.00 = `4500`
 
-#### GBP (in pence)
-
-- £5.00 = `500`
-- £10.00 = `1000`
-- £45.00 = `4500`
+**Note**: All prices are in EUR. UK customers will see prices in EUR. GBP can be added later if a separate UK region is created.
 
 ### Country Codes Reference
 
@@ -430,17 +414,16 @@ The seed script should **NOT** include:
 
 After running the seed script, verify:
 
-- [ ] Store has EUR (default) and GBP currencies
+- [ ] Store has EUR (default) currency
 - [ ] Default Sales Channel exists and is set as default
-- [ ] Europe region exists with EUR currency and 7 countries
-- [ ] UK region exists with GBP currency and 1 country
+- [ ] Europe region exists with EUR currency and 8 countries (including UK)
 - [ ] Tax regions exist for all 8 countries
 - [ ] Dublin stock location exists and is set as default
 - [ ] One shipping profile exists (Default Shipping Profile)
 - [ ] Three shipping zones exist (Ireland, UK, Europe)
 - [ ] 9 shipping options exist (3 per zone: standard, express, free)
-- [ ] Free shipping conditions are set (€45 for EUR, £45 for GBP)
-- [ ] Stripe is available in both regions
+- [ ] All shipping prices are in EUR (€5 standard, €10 express, free over €45)
+- [ ] Stripe is available in the Europe region
 - [ ] 6 product categories exist
 - [ ] Fulfillment sets are configured
 - [ ] Publishable API key exists (if created by script)
@@ -456,9 +439,10 @@ After running the seed script:
 
 ## Notes
 
-- All prices stored in smallest currency unit (cents/pence)
+- All prices stored in smallest currency unit (cents for EUR)
 - Free shipping conditions use order subtotal (before shipping)
 - Shipping options are linked to zones and profiles
 - Only one shipping profile (Default) - no fragile items profile needed
 - Products will be imported separately via CSV
 - Inventory management is disabled for all products (handled manually)
+- **Single region approach**: UK is included in Europe region with EUR currency. This can be expanded later if a separate UK region with GBP is needed.

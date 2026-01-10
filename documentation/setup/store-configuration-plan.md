@@ -28,14 +28,15 @@ This document serves as the requirements guide for configuring the Nature's Elix
 
 ## 2. Region Configuration
 
-**Important**: UK is a **separate region** from Europe due to different currency (GBP vs EUR) and post-Brexit regulations.
+**Current Approach**: Single Europe region that includes the UK with EUR currency. This simplifies the initial setup and can be expanded later if a separate UK region with GBP is needed.
 
-### Region 1: Europe (EUR)
+### Single Region: Europe (EUR)
 
 - **Region Name**: "Europe"
 - **Currency**: EUR (Euro)
 - **Countries**:
   - Ireland (IE)
+  - United Kingdom (GB)
   - Germany (DE)
   - Denmark (DK)
   - Sweden (SE)
@@ -46,21 +47,6 @@ This document serves as the requirements guide for configuring the Nature's Elix
   - Stripe (`pp_stripe_stripe`) - for credit card payments
 - **Tax Provider**:
   - System tax provider (`tp_system`)
-
-### Region 2: United Kingdom (GBP)
-
-- **Region Name**: "United Kingdom"
-- **Currency**: GBP (British Pound Sterling)
-- **Countries**:
-  - United Kingdom (GB)
-- **Payment Providers**:
-  - Stripe (`pp_stripe_stripe`)
-- **Tax Provider**:
-  - System tax provider (`tp_system`)
-- **Note**: Separate region due to:
-  - Different currency (GBP vs EUR)
-  - Post-Brexit customs and VAT regulations
-  - Different shipping requirements
 
 ### Tax Regions
 
@@ -172,8 +158,8 @@ Tax regions for all supported countries:
 - **Type**: Standard
 - **Description**: "Standard shipping to United Kingdom. Delivery in 5-7 business days."
 - **Price Type**: Flat rate
-- **Price**: £5.00 (500 pence)
-- **Currency**: GBP
+- **Price**: €5.00 (500 cents)
+- **Currency**: EUR
 - **Provider**: Manual (`manual_manual`)
 - **Zone**: United Kingdom
 - **Profile**: Default Shipping Profile
@@ -187,8 +173,8 @@ Tax regions for all supported countries:
 - **Type**: Express
 - **Description**: "Express shipping to United Kingdom. Delivery in 2-3 business days."
 - **Price Type**: Flat rate
-- **Price**: £10.00 (1000 pence)
-- **Currency**: GBP
+- **Price**: €10.00 (1000 cents)
+- **Currency**: EUR
 - **Provider**: Manual (`manual_manual`)
 - **Zone**: United Kingdom
 - **Profile**: Default Shipping Profile (can be used for fragile items too)
@@ -243,33 +229,32 @@ Tax regions for all supported countries:
   - **Condition**: Order subtotal must be ≥ €45.00 (4500 cents)
   - **Note**: This applies to Ireland and Europe regions (EUR currency)
 
-#### Free Shipping (Orders Over £45 - UK)
+#### Free Shipping (Orders Over €45 - UK)
 
 - **Name**: "Free Shipping (UK)"
 - **Type**: Free
-- **Description**: "Free shipping for orders over £45.00"
+- **Description**: "Free shipping for orders over €45.00"
 - **Price Type**: Free
-- **Price**: £0.00 (0 pence)
-- **Currency**: GBP
+- **Price**: €0.00 (0 cents)
+- **Currency**: EUR
 - **Provider**: Manual (`manual_manual`)
 - **Zone**: United Kingdom
 - **Profile**: Default Shipping Profile
 - **Rules**:
   - Enabled in store: true
   - Is return: false
-  - **Condition**: Order subtotal must be ≥ £45.00 (4500 pence)
-  - **Note**: This applies to United Kingdom region (GBP currency)
+  - **Condition**: Order subtotal must be ≥ €45.00 (4500 cents)
+  - **Note**: UK is included in Europe region with EUR currency
 
 ### Shipping Considerations
 
 - **Ireland Shipping**: €5.00 standard, €10.00 express
-- **UK Shipping**: £5.00 standard, £10.00 express (GBP pricing)
+- **UK Shipping**: €5.00 standard, €10.00 express (EUR pricing - UK included in Europe region)
 - **Europe Shipping**: €5.00 standard, €10.00 express (EUR pricing)
 - **Free Shipping**:
-  - Ireland & Europe: Orders over €45.00
-  - UK: Orders over £45.00
+  - All zones (Ireland, UK, Europe): Orders over €45.00
 - **International Shipping**: Consider restrictions for oils (hazmat regulations)
-- **Brexit Considerations**: UK is separate from EU, may require customs documentation
+- **Note**: UK is included in the Europe region with EUR currency. This can be expanded later if a separate UK region with GBP is needed.
 
 ## 5. Payment Configuration
 
@@ -456,11 +441,11 @@ Each product should have:
 
 ### Region
 
-- [x] Ireland region created
+- [x] Europe region created (includes UK)
 - [x] EUR currency set
-- [x] Ireland (IE) country added
+- [x] All countries added (IE, GB, DE, DK, SE, FR, ES, IT)
 - [x] Stripe payment provider configured
-- [x] Tax region for Ireland created
+- [x] Tax regions for all countries created
 
 ### Stock Location
 
@@ -516,10 +501,7 @@ Each product should have:
 - €35.00 = 3500 cents
 - €45.00 = 4500 cents
 
-#### GBP (in pence)
-
-- £8.00 = 800 pence
-- £15.00 = 1500 pence
+**Note**: All prices are in EUR. UK customers will see prices in EUR. GBP can be added later if a separate UK region is created.
 
 ### Country Codes
 
