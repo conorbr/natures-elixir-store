@@ -28,6 +28,10 @@ export default function OurStoryPage() {
             transparency, and the well-being of our customers and the planet.
           </Text>
           <Text className="text-base-regular">
+            You&apos;ll often find us at our weekend stall in Herbert Park and
+            St. Anne&apos;s Park—come say hello.
+          </Text>
+          <Text className="text-base-regular">
             Thank you for being part of our story.
           </Text>
         </div>

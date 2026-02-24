@@ -56,6 +56,10 @@ export default async function Footer() {
               Small-batch natural wellness products, handcrafted with care in
               Dublin, Ireland.
             </p>
+            <p className="text-sm text-white/70 mt-4">
+              <span className="font-medium text-white">Find us:</span> Herbert
+              Park &amp; St. Anne&apos;s Park, every weekend.
+            </p>
           </div>
 
           {/* ── Shop column ───────────────────────────── */}

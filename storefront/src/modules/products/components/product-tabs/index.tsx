@@ -128,12 +128,21 @@ const ShippingInfoTab = () => {
         </div>
       </div>
       <div className="flex items-start gap-3">
-        <span className="text-lg">↩️</span>
+        <span className="text-lg">💬</span>
         <div>
-          <p className="font-semibold text-primary/80 mb-0.5">Easy returns</p>
+          <p className="font-semibold text-primary/80 mb-0.5">Not happy with your order?</p>
           <p>
-            Not happy? Return your order within 30 days for a full refund, no
-            questions asked.
+            Reach out to us—we&apos;re here to help and want to make it right.
+          </p>
+        </div>
+      </div>
+      <div className="flex items-start gap-3">
+        <span className="text-lg">🏪</span>
+        <div>
+          <p className="font-semibold text-primary/80 mb-0.5">Visit us in person</p>
+          <p>
+            Find us at our weekend stall in Herbert Park and St. Anne&apos;s
+            Park—come say hello.
           </p>
         </div>
       </div>

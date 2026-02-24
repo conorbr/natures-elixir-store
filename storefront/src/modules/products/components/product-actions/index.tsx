@@ -22,7 +22,6 @@ type ProductActionsProps = {
 
 const TRUST_BADGES = [
   { icon: "🌿", label: "100% Natural" },
-  { icon: "🚚", label: "Free shipping over €40" },
   { icon: "🏅", label: "Award-winning" },
 ]
 

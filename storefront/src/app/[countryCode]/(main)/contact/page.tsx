@@ -21,7 +21,9 @@ export default function ContactPage() {
         </Heading>
         <Text className="text-base-regular text-ui-fg-subtle mb-10">
           Have a question or feedback? We&apos;d love to hear from you. Send us
-          a message and we&apos;ll get back to you as soon as we can.
+          a message and we&apos;ll get back to you as soon as we can. You can
+          also find us at our weekend stall in Herbert Park and St. Anne&apos;s
+          Park.
         </Text>
         <ContactForm />
       </div>
