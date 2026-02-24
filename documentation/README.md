@@ -30,6 +30,10 @@ All setup and configuration documentation is in the **[setup/](./setup/)** folde
 - **[Business Requirements](./business-requirements.md)** - Custom business rules, workflows, and operational requirements
 - **[Email Templates & Communications](./email-communications.md)** - Email templates, notifications, and communication preferences
 
+### Work Packages
+
+- **[Work Packages](./workpackages/README.md)** - Upcoming and in-progress work packages, scope, and acceptance criteria
+
 ## Quick Links
 
 - Backend Configuration: `backend/medusa-config.js`
