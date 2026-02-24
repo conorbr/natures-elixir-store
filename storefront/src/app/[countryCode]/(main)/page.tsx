@@ -1,14 +1,16 @@
 import { Metadata } from "next"
 
-import FeaturedProducts from "@modules/home/components/featured-products"
+import AwardBanner from "@modules/home/components/award-banner"
+import BrandStory from "@modules/home/components/brand-story"
+import CategoryGrid from "@modules/home/components/category-grid"
+import HomeFeaturedSection from "@modules/home/components/featured-products/home-featured-section"
 import Hero from "@modules/home/components/hero"
-import { getCollectionsWithProducts } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 
 export const metadata: Metadata = {
-  title: "Medusa Next.js Starter Template",
+  title: "Nature's Elixir - Premium Irish Herbal Health",
   description:
-    "A performant frontend ecommerce starter template with Next.js 14 and Medusa.",
+    "Experience the purity of premium Irish botanicals, hand-harvested and small-batch produced in the heart of the Emerald Isle.",
 }
 
 export default async function Home({
@@ -17,21 +19,19 @@ export default async function Home({
   params: Promise<{ countryCode: string }>
 }) {
   const { countryCode } = await params
-  const collections = await getCollectionsWithProducts(countryCode)
   const region = await getRegion(countryCode)
 
-  if (!collections || !region) {
+  if (!region) {
     return null
   }
 
   return (
-    <>
+    <div className="bg-background-light">
       <Hero />
-      <div className="py-12">
-        <ul className="flex flex-col gap-x-6">
-          <FeaturedProducts collections={collections} region={region} />
-        </ul>
-      </div>
-    </>
+      <CategoryGrid />
+      <AwardBanner />
+      <HomeFeaturedSection countryCode={countryCode} region={region} />
+      <BrandStory />
+    </div>
   )
 }

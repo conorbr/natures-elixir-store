@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Lora:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4A5A26",
+                        "accent": "#D4A373",
+                        "background-light": "#F7F2EB",
+                        "background-dark": "#1a1b17",
+                        "stone-custom": "#E5E0D8",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "serif": ["Lora", "serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .fade-right {
+            mask-image: linear-gradient(to right, black 85%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<!-- Navbar -->
+<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-primary/10 px-4 h-16 flex items-center justify-between">
+<button class="p-2 -ml-2 text-primary">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+<div class="flex items-center gap-2">
+<div class="size-8 rounded-full bg-primary flex items-center justify-center text-background-light">
+<span class="material-symbols-outlined text-xl">psychology_alt</span>
+</div>
+<h1 class="font-serif font-bold text-lg text-primary tracking-tight">Nature's Elixir</h1>
+</div>
+<button class="p-2 -mr-2 text-primary relative">
+<span class="material-symbols-outlined text-2xl">shopping_cart</span>
+<span class="absolute top-1 right-1 size-4 bg-accent text-[10px] text-white rounded-full flex items-center justify-center font-bold">2</span>
+</button>
+</nav>
+<!-- Category Quick-Nav -->
+<div class="relative py-4 bg-background-light border-b border-primary/5">
+<div class="flex gap-3 overflow-x-auto px-4 no-scrollbar fade-right">
+<div class="flex h-9 shrink-0 items-center justify-center rounded-full bg-primary text-white px-5 text-sm font-medium">All</div>
+<div class="flex h-9 shrink-0 items-center justify-center rounded-full bg-white border border-primary/10 px-5 text-sm font-medium">Tea</div>
+<div class="flex h-9 shrink-0 items-center justify-center rounded-full bg-white border border-primary/10 px-5 text-sm font-medium">Oils</div>
+<div class="flex h-9 shrink-0 items-center justify-center rounded-full bg-white border border-primary/10 px-5 text-sm font-medium">Sponges</div>
+<div class="flex h-9 shrink-0 items-center justify-center rounded-full bg-white border border-primary/10 px-5 text-sm font-medium">Tinctures</div>
+<div class="flex h-9 shrink-0 items-center justify-center rounded-full bg-white border border-primary/10 px-5 text-sm font-medium">Balms</div>
+</div>
+</div>
+<!-- Hero Section -->
+<section class="flex flex-col">
+<div class="aspect-[16/9] w-full bg-cover bg-center rounded-b-xl overflow-hidden" data-alt="Peaceful lifestyle photo of herbal tea preparation" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPR0tAUb2I8trpNbdVdNgr0OgfG_oX7jcmnNgZRr0sgFPyU6EaFl-P1F85PQZj9FPd5M6Rqvy9oHsGC44T1wn1pQ43l4QVSYmqZNRqG-05oSJE_QqofbA6x73fysgK0E-DzwB3sb6zdHZw87E8DcqquUS9KKOeUpb7nBuOe_wIdCh4Csz_YtW6EV_8XP5wXsQZ76xGDMDw_irMDj3SksC1B1TueGryS3oQUPWQL5h6MlTa49dQNlyXOKP3gsSBprvGg25IG0JZOtPC')">
+</div>
+<div class="px-6 py-10 text-center flex flex-col items-center">
+<span class="text-accent font-bold text-xs uppercase tracking-widest mb-3">Pure Irish Potency</span>
+<h2 class="font-serif text-4xl text-primary leading-tight mb-4">Wellness Rooted in Nature</h2>
+<p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed mb-6 max-w-xs">
+                Premium wild-harvested herbal remedies crafted for a balanced, vibrant life.
+            </p>
+<!-- Medal Icons -->
+<div class="flex gap-2 mb-8">
+<span class="material-symbols-outlined text-accent text-xl">workspace_premium</span>
+<span class="material-symbols-outlined text-accent text-xl">workspace_premium</span>
+<span class="material-symbols-outlined text-accent text-xl">workspace_premium</span>
+<span class="material-symbols-outlined text-accent text-xl">workspace_premium</span>
+<span class="material-symbols-outlined text-accent text-xl">workspace_premium</span>
+</div>
+<!-- CTA Stack -->
+<div class="flex flex-col w-full gap-3">
+<button class="w-full h-14 bg-primary text-white font-bold rounded-xl shadow-lg shadow-primary/20">Shop Apothecary</button>
+<button class="w-full h-14 bg-white border border-primary/20 text-primary font-bold rounded-xl">Our Harvest Story</button>
+</div>
+</div>
+</section>
+<!-- Category Grid -->
+<section class="px-4 py-12 flex flex-col gap-4 bg-stone-custom/30">
+<h3 class="font-serif text-2xl text-primary px-2 mb-2 text-center">Explore Remedies</h3>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm border border-primary/5">
+<div class="size-16 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">emoji_food_beverage</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-slate-800">Artisan Tea Blends</h4>
+<p class="text-sm text-slate-500">Hand-picked wild Irish herbs</p>
+</div>
+<span class="material-symbols-outlined text-slate-300">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm border border-primary/5">
+<div class="size-16 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">opacity</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-slate-800">Essential Oils</h4>
+<p class="text-sm text-slate-500">Pure cold-pressed extractions</p>
+</div>
+<span class="material-symbols-outlined text-slate-300">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm border border-primary/5">
+<div class="size-16 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">spa</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-slate-800">Natural Sponges</h4>
+<p class="text-sm text-slate-500">Eco-friendly sea silk harvest</p>
+</div>
+<span class="material-symbols-outlined text-slate-300">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Award Banner -->
+<section class="bg-primary py-12 px-6 text-center text-background-light">
+<div class="flex justify-center gap-4 mb-6">
+<span class="material-symbols-outlined text-4xl text-accent/50">military_tech</span>
+<span class="material-symbols-outlined text-4xl text-accent">award_star</span>
+<span class="material-symbols-outlined text-4xl text-accent/50">military_tech</span>
+</div>
+<h3 class="font-serif text-2xl mb-4">Ireland's Most Trusted Herbal Brand 2024</h3>
+<p class="text-background-light/70 text-sm leading-relaxed max-w-xs mx-auto">
+            Recognized for our commitment to sustainable wild-harvesting and traditional potency standards.
+        </p>
+</section>
+<!-- Featured Products -->
+<section class="px-4 py-16">
+<div class="flex justify-between items-end mb-8">
+<h3 class="font-serif text-2xl text-primary">Best Sellers</h3>
+<a class="text-accent font-bold text-sm underline" href="#">View All</a>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Product Card 1 -->
+<div class="flex flex-col">
+<div class="aspect-square bg-white rounded-xl mb-3 overflow-hidden border border-primary/5 relative">
+<img alt="product" class="w-full h-full object-cover" data-alt="Clear bottle with amber herbal oil" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANf18en58_prTF1w6jrTNaG4P3XXyt-9rt_--oM9E4qXBWSsd_vDNYTmmjsRT46a-2Wdc29Is3qS_ZX2nny-XLG_TJkttU1N5cyhRUJAsOeSGezZmd9Wr81E-cXGdNNwFbQMDXMfxIihM-MZwcXWkFUTcf35a6ZjE3Qb--TFQMWg1hG2EIsnOEFr7koioLYf9jVm8lyRLVl8VSMuua9E1Q8TEpFTLXCHlJEYwfI_HfEMe5ikoql-18uBjd3VYaTLEEMXEIkBex0h3-"/>
+<span class="absolute top-2 left-2 bg-accent text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase">Top Rated</span>
+</div>
+<h4 class="font-bold text-slate-800 text-sm mb-1">Dingle Dew Oil</h4>
+<p class="text-primary font-bold text-sm mb-2">€24.00</p>
+<div class="flex gap-1 mb-3">
+<div class="px-2 py-1 bg-stone-custom text-[10px] font-bold rounded">30ML</div>
+<div class="px-2 py-1 bg-white border border-stone-custom text-[10px] font-bold rounded">50ML</div>
+</div>
+<button class="w-full py-2 bg-primary/10 text-primary font-bold text-xs rounded-lg border border-primary/20">Add to Cart</button>
+</div>
+<!-- Product Card 2 -->
+<div class="flex flex-col">
+<div class="aspect-square bg-white rounded-xl mb-3 overflow-hidden border border-primary/5 relative">
+<img alt="product" class="w-full h-full object-cover" data-alt="Organic herbal tea in a glass jar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL_B1wC63tiI2_Ibm-8QA3NNEAHdxev5LyXMZSVyIpVnGUWOIfLmPTERZKN0pDsBJwyWXicmstlAI9URgCiI8AfMCZLGVPuMGiWfOPsvR9jMhSObAMd4UlKxw3HVBqRPVKHk4ULuEiV2RkroL5mb2j3Dv41NCGmBm29fIp-ribYRrNrhZJTO_4nbo8kBJECrLMBxcmq42C2lmilGFjsviX_fsb4LmKSF0DxkcVRw-1r46kwHa0XHl_xV9weLmFZpXqv3_aNRZDPjky"/>
+</div>
+<h4 class="font-bold text-slate-800 text-sm mb-1">Atlantic Moss Tea</h4>
+<p class="text-primary font-bold text-sm mb-2">€18.50</p>
+<div class="flex gap-1 mb-3">
+<div class="px-2 py-1 bg-stone-custom text-[10px] font-bold rounded">100G</div>
+<div class="px-2 py-1 bg-white border border-stone-custom text-[10px] font-bold rounded">250G</div>
+</div>
+<button class="w-full py-2 bg-primary/10 text-primary font-bold text-xs rounded-lg border border-primary/20">Add to Cart</button>
+</div>
+</div>
+</section>
+<!-- Brand Story -->
+<section class="bg-stone-custom/40 flex flex-col">
+<div class="aspect-[4/3] w-full bg-cover bg-center" data-alt="Beautiful green hills of Ireland landscape" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBm0A3OO-VHBUgOFGfKxBJ-FogaQ5LHcd2Nx4bppDg6tHMycrPqgeTFYLE53-KYWmjV0x96VHEL_Kus5EElrh3M3R2Z4o0cBeyGGEIOz9e5FcnFLvpKkkm2IAPNP9s1CQhQfwL0SPfrU5A3-pTaRHEfL_YvNfdxdlRsC8xpcsOdDk5CfrHvgwnva29fmR3V2DBR-utjnfmMfxaZQlo7i8vp-dshWAiHdoErgRN9ekELChVk6zByjuSmtdKqri3mAlibaBrSyAhfrZvf')">
+</div>
+<div class="px-8 py-16 text-center">
+<h3 class="font-serif text-3xl text-primary mb-6">Born in the Wild</h3>
+<p class="text-slate-600 leading-relaxed mb-8">
+                From the rugged cliffs of Moher to the serene valleys of Wicklow, we hand-harvest every herb according to lunar cycles and traditional Irish lore. Our mission is to preserve the ancient wisdom of the land.
+            </p>
+<div class="flex justify-center">
+<div class="size-20 rounded-full border-2 border-primary/30 flex items-center justify-center italic font-serif text-primary text-sm p-4 text-center leading-tight">
+                    Ethically Harvested
+                </div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-white px-6 pt-16 pb-8 border-t border-primary/10">
+<div class="flex flex-col items-center text-center">
+<div class="flex items-center gap-2 mb-6">
+<div class="size-10 rounded-full bg-primary flex items-center justify-center text-background-light">
+<span class="material-symbols-outlined">psychology_alt</span>
+</div>
+<h2 class="font-serif font-bold text-xl text-primary">Nature's Elixir</h2>
+</div>
+<p class="text-slate-500 text-sm mb-8 px-4">
+                Join our botanical circle for harvest updates, ancestral recipes, and 10% off your first order.
+            </p>
+<form class="w-full max-w-sm mb-12">
+<div class="flex flex-col gap-3">
+<input class="w-full h-12 bg-background-light border-none rounded-xl px-4 focus:ring-2 focus:ring-primary/20" placeholder="Email address" type="email"/>
+<button class="w-full h-12 bg-primary text-white font-bold rounded-xl">Subscribe</button>
+</div>
+</form>
+<div class="grid grid-cols-2 w-full gap-8 text-left mb-12">
+<div class="flex flex-col gap-3">
+<h5 class="font-bold text-primary uppercase text-xs tracking-widest">Shop</h5>
+<a class="text-sm text-slate-600" href="#">Herbal Teas</a>
+<a class="text-sm text-slate-600" href="#">Tinctures</a>
+<a class="text-sm text-slate-600" href="#">Skincare</a>
+<a class="text-sm text-slate-600" href="#">Gift Bundles</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="font-bold text-primary uppercase text-xs tracking-widest">Company</h5>
+<a class="text-sm text-slate-600" href="#">Our Story</a>
+<a class="text-sm text-slate-600" href="#">Journal</a>
+<a class="text-sm text-slate-600" href="#">Contact</a>
+<a class="text-sm text-slate-600" href="#">Wholesale</a>
+</div>
+</div>
+<div class="flex gap-6 mb-8 text-primary/60">
+<span class="material-symbols-outlined">social_leaderboard</span>
+<span class="material-symbols-outlined">share</span>
+<span class="material-symbols-outlined">alternate_email</span>
+</div>
+<p class="text-[10px] text-slate-400 uppercase tracking-widest">
+                © 2024 Nature's Elixir. Crafted in Co. Kerry, Ireland.
+            </p>
+</div>
+</footer>
+</body></html>

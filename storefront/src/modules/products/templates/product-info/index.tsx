@@ -1,5 +1,4 @@
 import { HttpTypes } from "@medusajs/types"
-import { Heading, Text } from "@medusajs/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 type ProductInfoProps = {
@@ -8,31 +7,36 @@ type ProductInfoProps = {
 
 const ProductInfo = ({ product }: ProductInfoProps) => {
   return (
-    <div id="product-info">
-      <div className="flex flex-col gap-y-4 lg:max-w-[500px] mx-auto">
-        {product.collection && (
+    <div id="product-info" className="flex flex-col gap-y-4">
+      {/* Badges */}
+      {product.collection && (
+        <div className="flex flex-wrap gap-2">
           <LocalizedClientLink
             href={`/collections/${product.collection.handle}`}
-            className="text-medium text-ui-fg-muted hover:text-ui-fg-subtle"
+            className="px-3 py-1 bg-primary/10 text-primary rounded-circle text-xs font-bold uppercase tracking-wider hover:bg-primary/20 transition-colors"
           >
             {product.collection.title}
           </LocalizedClientLink>
-        )}
-        <Heading
-          level="h2"
-          className="text-3xl leading-10 text-ui-fg-base"
-          data-testid="product-title"
-        >
-          {product.title}
-        </Heading>
+        </div>
+      )}
 
-        <Text
-          className="text-medium text-ui-fg-subtle whitespace-pre-line"
+      {/* Title */}
+      <h1
+        className="font-serif text-3xl small:text-4xl font-bold text-primary leading-tight"
+        data-testid="product-title"
+      >
+        {product.title}
+      </h1>
+
+      {/* Description */}
+      {product.description && (
+        <p
+          className="text-base italic text-ui-fg-subtle leading-relaxed"
           data-testid="product-description"
         >
           {product.description}
-        </Text>
-      </div>
+        </p>
+      )}
     </div>
   )
 }

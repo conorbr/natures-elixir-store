@@ -34,6 +34,14 @@ module.exports = {
           80: "#1F2937",
           90: "#111827",
         },
+        // Nature's Elixir brand (Stitch design)
+        primary: "#4A5A26",
+        "amber-accent": "#D97706",
+        accent: "#D4A373",
+        "background-light": "#F7F2EB",
+        "background-dark": "#1a1b17",
+        "warm-white": "#FFFFFF",
+        "stone-custom": "#E5E0D8",
       },
       borderRadius: {
         none: "0px",
@@ -69,6 +77,7 @@ module.exports = {
           "Ubuntu",
           "sans-serif",
         ],
+        serif: ['"Playfair Display"', "Georgia", "serif"],
       },
       keyframes: {
         ring: {

@@ -23,31 +23,28 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
 
   return (
     <div className="flex flex-col gap-y-3">
-      <span className="text-sm">Select {title}</span>
-      <div
-        className="flex flex-wrap justify-between gap-2"
-        data-testid={dataTestId}
-      >
-        {filteredOptions?.map((v) => {
-          return (
-            <button
-              onClick={() => updateOption(option.title ?? "", v ?? "")}
-              key={v}
-              className={clx(
-                "border-ui-border-base bg-ui-bg-subtle border text-small-regular h-10 rounded-rounded p-2 flex-1 ",
-                {
-                  "border-ui-border-interactive": v === current,
-                  "hover:shadow-elevation-card-rest transition-shadow ease-in-out duration-150":
-                    v !== current,
-                }
-              )}
-              disabled={disabled}
-              data-testid="option-button"
-            >
-              {v}
-            </button>
-          )
-        })}
+      <span className="text-xs font-bold uppercase tracking-widest text-primary/60">
+        Select {title}
+      </span>
+      <div className="flex flex-wrap gap-2" data-testid={dataTestId}>
+        {filteredOptions?.map((v) => (
+          <button
+            onClick={() => updateOption(option.title ?? "", v ?? "")}
+            key={v}
+            className={clx(
+              "px-6 py-2.5 rounded-circle border-2 text-sm font-bold transition-all",
+              {
+                "border-primary bg-primary/5 text-primary": v === current,
+                "border-primary/20 text-primary/60 hover:border-primary/50":
+                  v !== current,
+              }
+            )}
+            disabled={disabled}
+            data-testid="option-button"
+          >
+            {v}
+          </button>
+        ))}
       </div>
     </div>
   )

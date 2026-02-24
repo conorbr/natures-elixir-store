@@ -1,6 +1,7 @@
 import { getProductsListWithSort } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
-import ProductPreview from "@modules/products/components/product-preview"
+import ListingProductCard from "@modules/store/components/listing-product-card"
+import ListingHeader from "@modules/store/components/listing-header"
 import { Pagination } from "@modules/store/components/pagination"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 
@@ -55,7 +56,7 @@ export default async function PaginatedProducts({
     return null
   }
 
-  let {
+  const {
     response: { products, count },
   } = await getProductsListWithSort({
     page,
@@ -68,17 +69,20 @@ export default async function PaginatedProducts({
 
   return (
     <>
+      <ListingHeader count={count} sortBy={sortBy || "created_at"} />
       <ul
-        className="grid grid-cols-2 w-full small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8"
         data-testid="products-list"
       >
-        {products.map((p) => {
-          return (
-            <li key={p.id}>
-              <ProductPreview product={p} region={region} />
-            </li>
-          )
-        })}
+        {products.map((p, index) => (
+          <li key={p.id}>
+            <ListingProductCard
+              product={p}
+              region={region}
+              badgeLabel={index < 2 ? "Award Winner" : undefined}
+            />
+          </li>
+        ))}
       </ul>
       {totalPages > 1 && (
         <Pagination

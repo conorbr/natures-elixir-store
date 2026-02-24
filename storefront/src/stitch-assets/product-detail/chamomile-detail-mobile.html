@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4a5a26",
+                        "amber-accent": "#d97706",
+                        "background-light": "#F7F2EB",
+                        "background-dark": "#1b1d15",
+                    },
+                    fontFamily: {
+                        "display": ["Noto Serif", "serif"],
+                        "sans": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Noto Sans', sans-serif; }
+        .font-display { font-family: 'Noto Serif', serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="max-w-[375px] mx-auto bg-background-light dark:bg-background-dark shadow-xl min-h-screen pb-24 relative">
+<header class="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-primary/10 px-4 py-3">
+<div class="flex items-center justify-between">
+<button class="p-2 -ml-2 text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="flex items-center gap-2">
+<div class="size-6 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z"></path>
+</svg>
+</div>
+<h1 class="font-display font-bold text-lg tracking-tight text-primary">Nature's Elixir</h1>
+</div>
+<button class="p-2 -mr-2 text-primary relative">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute top-1 right-1 size-4 bg-amber-accent text-white text-[10px] flex items-center justify-center rounded-full font-bold">2</span>
+</button>
+</div>
+<div class="flex gap-2 mt-3 overflow-x-auto hide-scrollbar pb-1">
+<div class="px-4 py-1.5 rounded-full bg-primary text-white text-xs font-medium shrink-0">All Teas</div>
+<div class="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium shrink-0">Herbal</div>
+<div class="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium shrink-0">Black</div>
+<div class="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium shrink-0">Green</div>
+<div class="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium shrink-0">Loose Leaf</div>
+</div>
+</header>
+<main class="px-4 pt-4">
+<nav class="flex items-center gap-1 text-[10px] uppercase tracking-widest text-primary/60 font-medium mb-4">
+<a href="#">Shop</a>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<a href="#">Herbal</a>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="text-primary">Chamomile</span>
+</nav>
+<section class="flex flex-col gap-4">
+<div class="aspect-square w-full rounded-xl bg-center bg-cover overflow-hidden" data-alt="Overhead view of dried chamomile flowers in a wooden bowl" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAHxYZnUlTZz0akNP-1MbYR-Eg5se_jnbgXDBKVaxwd3lim_OWYVQSo_23bWV_ZyHadKANIYDlyqqOWRf9rjJYU7xXdtAczUHcV_RoaFFrJdaO97MQMadSpm7E7GAWqtnzVKI3_KuK3eLBaXqoJfUMLLSbVnqkqeuZuD6YpWl2dEyM4GZIkgYLE7jjLt4DRYYhy5ZvZwMXg2PEi_Ne_OzHMgOjzf4yszC_kTRrFIX5K3w2FThKmPK8dTmGxoBppUAPoCqw3prS9uGgw')">
+</div>
+<div class="grid grid-cols-3 gap-3">
+<div class="aspect-square rounded-lg border-2 border-primary bg-center bg-cover" data-alt="Cup of hot chamomile tea with steam" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCsxAj2P0WMKaFRP_VelOupLPfMUrmHpzITC9OGCl0HmWngQiTV2HMkhT_vAXodAJ-Iar4LZKBPO_Jd7JnzlVJ9WFWdFEG9lZNUWilB73lHeNrl-XBM6XFTc_7Ra6BYjSm3x6cyMUO7G06IwQtvTE9LIZuhmcMyng7K8nROn0Ffqd8MXtVKeWmyWSPvWFDEMCTc90TZc8yfftxbXuXMDGVZ_qpRJTTpZLXV4ClLpGy1Kwa0SprS1cYf1OO8RL0rWYlO--zX8yhpyb2X')"></div>
+<div class="aspect-square rounded-lg bg-center bg-cover" data-alt="Person holding a packet of herbal tea" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBkb3AmdP6oUiBBjkZvs8Y_t1plSTMP5w7rl2U4oOLZiGU5oo2T62s20o9Ij6JFO0uJmQ78d_dPcx_feIBgJUX5wS3olLN4yNEKjnAu8AuKH8GpEdNuGON_EojukvxSWTrwhDw8KivJCCpl42NC32uJQB0paS3VJtP1R2UXw3OpDoCXu1NMHq55M6cURLznzDm8F55uQBVB_HB629EdPnjpMB7REOOOs1c6vl1sBjpAeUTRnAgdKOLFNnhnporL5mM1QcQ8zTH-PG1A')"></div>
+<div class="aspect-square rounded-lg bg-center bg-cover" data-alt="Loose dried chamomile blossoms close up" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAj70EWjUz53KfKJI3NUeMwhKYQsXlfpMK1ABPosxXbtNi2UZMirAjRIM0SYSrtlBJGcjTP-boXAv4J4RTGfUfRM9R3ilUYk-YiLhaPkyr06cmKFiYuLBS11cE52C-RcK9618lCH54EvuO033QuN9rctQEAGIvFNJyy1x-oVG44kdWM93HJ6t5iHzeL4rOu5cIijgA-_1ZCfVXWiAKTkx_4kMPldOntp0Qgg7idbBlKVtC49VGfqHQuhU3pxrW5H6gZPZE1Ph4_2ucZ')"></div>
+</div>
+<div class="mt-2">
+<div class="flex gap-2 mb-2">
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">Tea</span>
+<span class="px-2 py-0.5 rounded bg-amber-accent/10 text-amber-accent text-[10px] font-bold uppercase tracking-wider italic">Finalist 2023</span>
+</div>
+<h2 class="font-display text-3xl font-bold text-primary leading-tight">Chamomile Tea</h2>
+<p class="font-display italic text-primary/70 text-sm mt-1 mb-3 text-pretty">Hand-picked organic blossoms for a tranquil evening ritual.</p>
+<p class="text-2xl font-bold text-amber-accent">From €8.75</p>
+</div>
+<div class="mt-4">
+<label class="text-[10px] font-bold uppercase tracking-widest text-primary/60 mb-2 block">Select Size</label>
+<div class="flex gap-2">
+<button class="flex-1 py-3 rounded-full border-2 border-primary bg-primary/5 text-primary text-xs font-bold">50g</button>
+<button class="flex-1 py-3 rounded-full border border-primary/20 text-primary/60 text-xs font-bold">100g</button>
+<button class="flex-1 py-3 rounded-full border border-primary/20 text-primary/60 text-xs font-bold">250g</button>
+</div>
+</div>
+<div class="flex flex-col items-center gap-4 py-6 border-y border-primary/10 my-4">
+<div class="flex justify-center gap-8 w-full">
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-primary">eco</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter opacity-70">Organic</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-primary">potted_plant</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter opacity-70">Vegan</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-primary">package_2</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter opacity-70">Plastic Free</span>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="p-4 rounded-xl bg-primary/5 flex items-center justify-between group cursor-pointer">
+<span class="font-display font-bold text-primary">Product Benefits</span>
+<span class="material-symbols-outlined text-primary">expand_more</span>
+</div>
+<div class="p-4 rounded-xl bg-primary/5 flex items-center justify-between group cursor-pointer">
+<span class="font-display font-bold text-primary">Shipping &amp; Returns</span>
+<span class="material-symbols-outlined text-primary">expand_more</span>
+</div>
+</div>
+<section class="mt-8 mb-4">
+<h3 class="font-display text-xl font-bold text-primary mb-4">You might also like</h3>
+<div class="flex gap-4 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-4">
+<div class="min-w-[160px] flex flex-col gap-2">
+<div class="aspect-[4/5] rounded-xl bg-center bg-cover" data-alt="Green tea leaves in a glass cup" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD9WRs3UhwSkJOitClxilaUpQXKnMp_DG7ItB7nd8pCpqdFO5zHfF2obTrDU4c8LrFniEvIM64bqctMWzTDFZXbGX66Re3mrCDRMzBt0ipJvIPjJCzR1FS_K2zj1swmzNC38uPiG5dp-LI99fFFaT-ohRYjUgF99rFfBK5sdlXWD_0CZUBiYdF0xP9jwkCrwEkiNYnOrUzvBv7qwVKgCjuLP5vfuifTaGPG0qIUk2RsnTYoXTeda6iKE-LGVjPfkL89FTKvIvvlaen7')"></div>
+<div>
+<h4 class="font-display font-bold text-sm text-primary">Jasmine Green</h4>
+<p class="text-xs text-amber-accent font-bold">€12.50</p>
+</div>
+</div>
+<div class="min-w-[160px] flex flex-col gap-2">
+<div class="aspect-[4/5] rounded-xl bg-center bg-cover" data-alt="Lavender buds and peppermint leaves blend" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAArTcs9eoEoXgGqOIFDNKmQpkwym2ianOVhRuIFH2tc2AazDgbiBQ_eYigzUYQvcVt6FUqOfMY_WCidbr2NA_HbkMY27jWJSTmBgxJwcQTDzFg8Je5EzozvRXv_SF3H9oP9xPTQ_KNFoUNCOBbscq62DrYeiCmQmSdOH0-6pum3yNK_JL-FMWbo5qbMnRgdGjaIwRBJg_G9LPijawRZX6pkXCHq4cATlMQwbhjQfY7upA56RnV8DFrgosPjnE2em-MNhVtJi-uboZj')"></div>
+<div>
+<h4 class="font-display font-bold text-sm text-primary">Lavender Mint</h4>
+<p class="text-xs text-amber-accent font-bold">€9.00</p>
+</div>
+</div>
+<div class="min-w-[160px] flex flex-col gap-2">
+<div class="aspect-[4/5] rounded-xl bg-center bg-cover" data-alt="Assorted herbal tea collection bags" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBP8xq9ishUa6jD5rzdgZjZQJ9ndz9zJYp79eD3Jgm-8w97n7tCW3CeMRNdGDPVN6dqfPJ9lTBg43kPfFpv-BzoA6CnmEBVpIhTi-DilYOLrmgn0pPQBgE6_FsokTmtlEudxfxR8-tF3pagmYey1X80SHB8hy4kmm5kNYDDhK5XkHHXeauSDyHU2VBM_3v0SUrHzPJtFU8mNqHUIHzG1A4_3tx0iDJPXNsh3bRBLg4pi8qvJs3ZCD-myhizpVEYfeTqrx2j9fvdKbY-')"></div>
+<div>
+<h4 class="font-display font-bold text-sm text-primary">Nightly Sampler</h4>
+<p class="text-xs text-amber-accent font-bold">€15.00</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+</main>
+<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[375px] px-4 py-4 bg-background-light/80 backdrop-blur-lg border-t border-primary/10 z-[100]">
+<button class="w-full bg-primary text-white py-4 rounded-full font-bold shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">shopping_bag</span>
+                Add to Cart — €8.75
+            </button>
+</div>
+</div>
+</body></html>

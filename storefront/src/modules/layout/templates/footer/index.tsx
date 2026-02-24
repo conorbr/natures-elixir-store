@@ -1,148 +1,138 @@
 import { getCategoriesList } from "@lib/data/categories"
 import { getCollectionsList } from "@lib/data/collections"
-import { Text, clx } from "@medusajs/ui"
+import Image from "next/image"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import MedusaCTA from "@modules/layout/components/medusa-cta"
+import FooterNewsletter from "@modules/layout/components/footer-newsletter"
+
+const COMPANY_LINKS = [
+  { label: "Our Story", href: "/our-story" },
+  { label: "Contact Us", href: "/contact" },
+  { label: "Wholesale", href: "/wholesale" },
+]
 
 export default async function Footer() {
   const { collections } = await getCollectionsList(0, 6)
   const { product_categories } = await getCategoriesList(0, 6)
 
+  const topLevelCategories =
+    product_categories?.filter((c) => !c.parent_category) ?? []
+
+  const shopLinks = [
+    ...topLevelCategories.slice(0, 4).map((c) => ({
+      label: c.name,
+      href: `/categories/${c.handle}`,
+      testId: "category-link",
+    })),
+    ...(collections?.slice(0, 3) ?? []).map((c) => ({
+      label: c.title,
+      href: `/collections/${c.handle}`,
+    })),
+  ]
+
   return (
-    <footer className="border-t border-ui-border-base w-full">
-      <div className="content-container flex flex-col w-full">
-        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
-          <div>
+    <footer className="bg-primary text-white w-full">
+      {/* Main content */}
+      <div className="content-container py-16">
+        <div className="grid grid-cols-1 xsmall:grid-cols-2 medium:grid-cols-4 gap-10 small:gap-12">
+          {/* ── Brand column ─────────────────────────── */}
+          <div className="xsmall:col-span-2 medium:col-span-1">
             <LocalizedClientLink
               href="/"
-              className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
+              className="flex items-center gap-3 mb-5 w-fit"
             >
-              Nature&apos;s Elixir
+              <Image
+                src="/Logo-stamp-dark-green.png"
+                alt="Nature's Elixir"
+                width={36}
+                height={36}
+                className="object-contain brightness-0 invert"
+              />
+              <span className="font-serif text-xl font-bold text-white tracking-tight">
+                Nature&apos;s Elixir
+              </span>
             </LocalizedClientLink>
+            <p className="text-sm text-white/60 leading-relaxed max-w-xs">
+              Small-batch natural wellness products, handcrafted with care in
+              Dublin, Ireland.
+            </p>
           </div>
-          <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
-            {product_categories && product_categories?.length > 0 && (
-              <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Categories
-                </span>
-                <ul
-                  className="grid grid-cols-1 gap-2"
-                  data-testid="footer-categories"
-                >
-                  {product_categories?.slice(0, 6).map((c) => {
-                    if (c.parent_category) {
-                      return
-                    }
 
-                    const children =
-                      c.category_children?.map((child) => ({
-                        name: child.name,
-                        handle: child.handle,
-                        id: child.id,
-                      })) || null
-
-                    return (
-                      <li
-                        className="flex flex-col gap-2 text-ui-fg-subtle txt-small"
-                        key={c.id}
-                      >
-                        <LocalizedClientLink
-                          className={clx(
-                            "hover:text-ui-fg-base",
-                            children && "txt-small-plus"
-                          )}
-                          href={`/categories/${c.handle}`}
-                          data-testid="category-link"
-                        >
-                          {c.name}
-                        </LocalizedClientLink>
-                        {children && (
-                          <ul className="grid grid-cols-1 ml-3 gap-2">
-                            {children &&
-                              children.map((child) => (
-                                <li key={child.id}>
-                                  <LocalizedClientLink
-                                    className="hover:text-ui-fg-base"
-                                    href={`/categories/${child.handle}`}
-                                    data-testid="category-link"
-                                  >
-                                    {child.name}
-                                  </LocalizedClientLink>
-                                </li>
-                              ))}
-                          </ul>
-                        )}
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>
-            )}
-            {collections && collections.length > 0 && (
-              <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Collections
-                </span>
-                <ul
-                  className={clx(
-                    "grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small",
-                    {
-                      "grid-cols-2": (collections?.length || 0) > 3,
-                    }
-                  )}
-                >
-                  {collections?.slice(0, 6).map((c) => (
-                    <li key={c.id}>
-                      <LocalizedClientLink
-                        className="hover:text-ui-fg-base"
-                        href={`/collections/${c.handle}`}
-                      >
-                        {c.title}
-                      </LocalizedClientLink>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus txt-ui-fg-base">Company</span>
-              <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
-                <li>
-                  <LocalizedClientLink
-                    href="/our-story"
-                    className="hover:text-ui-fg-base"
-                  >
-                    Our Story
-                  </LocalizedClientLink>
-                </li>
-                <li>
-                  <LocalizedClientLink
-                    href="/contact"
-                    className="hover:text-ui-fg-base"
-                  >
-                    Contact Us
-                  </LocalizedClientLink>
-                </li>
-                <li>
-                  <LocalizedClientLink
-                    href="/wholesale"
-                    className="hover:text-ui-fg-base"
-                  >
-                    Wholesale
-                  </LocalizedClientLink>
-                </li>
+          {/* ── Shop column ───────────────────────────── */}
+          {shopLinks.length > 0 && (
+            <div>
+              <h5 className="font-bold text-white text-xs uppercase tracking-widest mb-5">
+                Shop
+              </h5>
+              <ul className="space-y-3 text-sm text-white/70">
+                {shopLinks.map((link) => (
+                  <li key={link.href}>
+                    <LocalizedClientLink
+                      href={link.href}
+                      className="hover:text-white transition-colors"
+                      data-testid={link.testId}
+                    >
+                      {link.label}
+                    </LocalizedClientLink>
+                  </li>
+                ))}
               </ul>
             </div>
+          )}
+
+          {/* ── Company column ────────────────────────── */}
+          <div>
+            <h5 className="font-bold text-white text-xs uppercase tracking-widest mb-5">
+              Company
+            </h5>
+            <ul className="space-y-3 text-sm text-white/70">
+              {COMPANY_LINKS.map((link) => (
+                <li key={link.href}>
+                  <LocalizedClientLink
+                    href={link.href}
+                    className="hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </LocalizedClientLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ── Newsletter column ─────────────────────── */}
+          <div>
+            <h5 className="font-bold text-white text-xs uppercase tracking-widest mb-5">
+              Stay Connected
+            </h5>
+            <p className="text-sm text-white/60 leading-relaxed mb-4">
+              Join our community for natural wellness tips and exclusive offers.
+            </p>
+            <FooterNewsletter />
           </div>
         </div>
-        <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
-          <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Nature&apos;s Elixir. All rights
+      </div>
+
+      {/* Bottom bar */}
+      <div className="border-t border-white/10">
+        <div className="content-container py-5 flex flex-col xsmall:flex-row items-center justify-between gap-3 text-xs text-white/40">
+          <p>
+            &copy; {new Date().getFullYear()} Nature&apos;s Elixir. All rights
             reserved.
-          </Text>
-          <MedusaCTA />
+          </p>
+          <div className="flex gap-6">
+            <LocalizedClientLink
+              href="/contact"
+              className="hover:text-white/70 transition-colors"
+            >
+              Contact
+            </LocalizedClientLink>
+            <LocalizedClientLink
+              href="/wholesale"
+              className="hover:text-white/70 transition-colors"
+            >
+              Wholesale
+            </LocalizedClientLink>
+          </div>
         </div>
       </div>
     </footer>

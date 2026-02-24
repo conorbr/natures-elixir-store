@@ -11,22 +11,22 @@ export default async function CategoryBanner() {
   }
 
   return (
-    <div className="bg-white border-b border-ui-border-base w-full">
+    <div className="bg-white border-b border-primary/5 w-full">
       <nav
         aria-label="Product categories"
-        className="content-container overflow-x-auto scrollbar-hide"
+        className="content-container overflow-x-auto no-scrollbar py-3"
       >
-        <ul className="flex items-center gap-x-1 py-2 w-max min-w-full justify-center">
+        <ul className="flex items-center gap-3 lg:gap-4 w-max min-w-full justify-center">
           {topLevel.map((category) => (
             <li key={category.id} className="flex-shrink-0">
               <LocalizedClientLink
                 href={`/categories/${category.handle}`}
                 className="
                   inline-block px-4 py-1.5 rounded-full
-                  text-xs font-medium tracking-wide
-                  text-ui-fg-subtle border border-ui-border-base
-                  hover:border-ui-border-strong hover:text-ui-fg-base
-                  hover:bg-ui-bg-subtle
+                  text-sm font-medium
+                  text-slate-600 border border-slate-200
+                  hover:border-primary hover:text-primary
+                  bg-transparent
                   transition-colors duration-150 whitespace-nowrap
                 "
                 data-testid={`category-banner-link-${category.handle}`}
