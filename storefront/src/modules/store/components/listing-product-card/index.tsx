@@ -78,8 +78,8 @@ export default async function ListingProductCard({
                 {cheapestPrice.calculated_price}
               </span>
             )}
-            <span className="w-full sm:w-auto py-2.5 sm:py-2 bg-primary text-white text-xs sm:text-sm font-bold rounded flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
-              Add to Cart
+            <span className="w-full sm:w-auto py-2.5 sm:py-2 px-4 sm:px-6 bg-primary text-white text-xs sm:text-sm font-bold rounded flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
+              View Product
             </span>
           </div>
         </div>
