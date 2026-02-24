@@ -92,7 +92,7 @@ const ShippingInfoTab = () => {
             </p>
           </div>
         </div>
-        <div className="flex items-start gap-x-2">
+        {/* <div className="flex items-start gap-x-2">
           <Refresh />
           <div>
             <span className="font-semibold">Simple exchanges</span>
@@ -101,8 +101,8 @@ const ShippingInfoTab = () => {
               product for a new one.
             </p>
           </div>
-        </div>
-        <div className="flex items-start gap-x-2">
+        </div> */}
+        {/* <div className="flex items-start gap-x-2">
           <Back />
           <div>
             <span className="font-semibold">Easy returns</span>
@@ -112,7 +112,7 @@ const ShippingInfoTab = () => {
               is hassle-free.
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )
